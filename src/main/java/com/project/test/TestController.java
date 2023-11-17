@@ -42,6 +42,7 @@ public class TestController {
 	}
 	
 	//4. db연동 확인 -> json
+	@ResponseBody
 	@GetMapping("/test4")
 	public List<Map<String, Object>> test4() {
 		return userMapper.selectUserList();
