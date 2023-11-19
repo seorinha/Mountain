@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 header {
 	height:80px;
 	background-color: darkseagreen;
@@ -9,3 +10,33 @@ footer {
 	height:100px;
 	background-color:lightgrey;
 	}
+.nav-item .nav-link:hover {color:forestgreen !important;}
+.menu-login:hover {color:forestgreen !important;}
+
+.mount-box {
+	border-color:darkseagreen;
+	border-width: 3px;
+	border-style: solid;
+	width:600px;
+	margin:auto;
+}
+.mount-box:hover {background-color:darkgray;
+text-decoration: none; color:#000;}
+
+
+
+.sign-up-box {
+	width:600px;
+	margin:auto;
+	}
+
+.already-sign-up:hover {
+	text-decoration:underline;
+	}	
+
+
+.login-box {
+	width:600px;
+	margin:auto;
+	}
+
