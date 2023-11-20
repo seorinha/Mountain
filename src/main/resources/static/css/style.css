@@ -39,4 +39,15 @@ text-decoration: none; color:#000;}
 	width:600px;
 	margin:auto;
 	}
-
+	
+	
+.info-review-box {
+	width:600px;
+	margin:auto;
+}
+.map-box {
+	height:300px;
+}
+.review-hr {width:600px;}
+.review-table {width:600px;
+	margin:auto;}
