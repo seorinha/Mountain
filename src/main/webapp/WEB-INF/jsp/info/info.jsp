@@ -9,7 +9,7 @@
 	
 	<%--산 정보 --%>
 	<div class="info-review-box">
-		<h3 class="font-weight-bold">산이름</h3>
+		<h3 class="font-weight-bold">ㅇㅇ산</h3>
 		<div class="d-flex">
 			<h6>산 소재지</h6>
 			<%--빈 별: 1. 비로그인일 때, 2. 로그인 상태에서 별 누르지않았을 때 --%>
@@ -60,6 +60,7 @@
 	</div>
 	<%--산정보 박스 끝 --%>
 	
+	
 	<%--후기 영역 --%>
 	<div>
 		<h5 class="text-center mt-2">oo산 후기</h5>
@@ -78,13 +79,19 @@
 			  	</thead>
 			  	<tbody>
 				    <tr>
-				      <th>1</th>
 				      <td></td>
+				      <td><a href="#"></a></td>
 				      <td></td>
 				      <td></td>
 				    </tr>
 			 	 </tbody>
 			</table>
+			
+			<div class="d-flex justify-content-end">
+				<a href="/review/review-create-view" class="btn btn-success">후기쓰기</a>
+			</div>
+			
+			<%--paging --%>
 			
 			
 		</div>
