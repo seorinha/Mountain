@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.project.user.mapper.UserMapper;
+import com.project.user.repository.UserRepository;
 
 @Controller
 public class TestController {
 
 	@Autowired
-	private UserMapper userMapper;
+	private UserRepository userMapper;
 	
 	//1. string + response body
 	@ResponseBody
