@@ -35,7 +35,8 @@ public class ReviewRestController {
 			HttpSession session) {
 		
 		int mtId = (int)session.getAttribute("mtId");
-		String userId = (String)session.getAttribute("userId");
+		int userId = (int)session.getAttribute("userId");
+		String userLoginId = (String)session.getAttribute("userLoginId");
 		
 		//db insert
 		
