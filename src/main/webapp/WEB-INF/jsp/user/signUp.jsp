@@ -69,14 +69,12 @@
 
 <script>
 $(document).ready(function() {
-	//중복버튼 클릭 
+	//중복버튼 클릭
 	$('#loginIdCheckBtn').on('click', function() {
-		//alert("중복확인");
-		
 		//경고문구 초기화
-		$('#idCheckLength').addClass('d-none');
-		$('#idCheckDuplicated').addClass('d-none');
-		$('#idCheckOk').addClass('d-none');
+		$('#idCheckLength').addClass("d-none");
+		$('#idCheckDuplicated').addClass("d-none");
+		$('#idCheckOk').addClass("d-none");
 		
 		let loginId = $('#loginId').val().trim();
 		if (loginId.length < 4) {
@@ -84,7 +82,8 @@ $(document).ready(function() {
 			return;
 		}
 		
-		//ajax - 중복확인
+		
+		//ajax -  중복확인
 		$.ajax({
 			//request
 			url:"/user/is-duplicated-id"
@@ -92,29 +91,27 @@ $(document).ready(function() {
 		
 			//response
 			, success:function(data) {
-				if (data.isDuplicated) { //중복이면
+				if (data.isDuplicated) { //아이디 중복이라면
 					$('#idCheckDuplicated').removeClass('d-none');
-				} else { //중복 아니면 사용가능
+				} else { //아이디가 중복이 아니라서 사용가능하면
 					$('#idCheckOk').removeClass('d-none');
 				}
 			}
 			, error:function(request, status, error) {
-				alert("중복확인에 실패했습니다.");
+				alert("중복 확인에 실패했습니다");
 			}
 			
 		});
-		
 	});
 	
 	//회원가입 submit
 	$('#signUpForm').on('submit', function(e) {
-		e.preventDefault();
+		e.preventDefault(); // 서브밋 기능을 막는다 
 		
-		//alert("aaaa");
 		//validation
 		let loginId = $('#loginId').val().trim();
-		let password = $('#password').val().trim();
-		let confirmPassword = $('#confirmPassword').val().trim();
+		let password = $('#password').val();
+		let confirmPassword = $('#confirmPassword').val();
 		let name = $('#name').val().trim();
 		let email = $('#email').val().trim();
 		
@@ -123,7 +120,7 @@ $(document).ready(function() {
 			return false;
 		}
 		
-		if (!password || !confirmpassword) {
+		if (!password || !confirmPassword) {
 			alert("비밀번호를 입력하세요");
 			return false;
 		}
@@ -133,7 +130,7 @@ $(document).ready(function() {
 			return false;
 		}
 		
-		if (name == '') {
+		if (!name) {
 			alert("이름을 입력하세요");
 			return false;
 		}
@@ -143,31 +140,32 @@ $(document).ready(function() {
 			return false;
 		}
 		
-		//중복확인이 제대로 안된경우
+		
+		//아이디 중복 확인 후 사용가능한지 확인 -> idCheckOk가 d-none  일때 alert 띄운다
 		if ($('#idCheckOk').hasClass('d-none')) {
 			alert("아이디 중복확인을 다시 해주세요");
 			return false;
 		}
 		
-		// 서버로 보내기
-		//ajax - 응답값이 json 
-		let url = $(this).attr('action');
-		let params = $(this).serialize(); 
 		
+		
+		// ajax - 응답값이 json 
+		let url = $(this).attr('action');
+		let params = $(this).serialize(); //serialize: 폼태그에 있는 name 속성-값으로 파라미터 구성
 		console.log(params);
 		
-		$.post(url, params)
-		.done(function(data) {
-			if (data.code == 200) {
-				alert("가입을 환영합니다. 로그인을 해주세요");
-				location.href="/user/sign-in-view";
+		$.post(url, params) //request
+		.done(function(data) { //response
+			//{"code":200, "result":"성공"}
+			if (data.code == 200) { //성공
+ 				alert("가입을 환영합니다. 로그인을 해주세요");
+				location.href = "/user/sign-in-view";
 			} else {
+				//로직상 실패
 				alert("data.errorMessage");
 			}
-		}); 
-			
+		});
 		
 	});
-	
 });
 </script>

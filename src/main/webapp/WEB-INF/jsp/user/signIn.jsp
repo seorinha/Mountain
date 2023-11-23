@@ -34,5 +34,27 @@
 	<div class="text-center mt-3">
 		<a href="/user/sign-up-view">회원가입하기</a>
 	</div>
-	
 </div>
+
+<script>
+$(document).ready(function() {
+	//로그인
+	$('#loginForm').on('submit', function(e) {
+		e.preventDefault();
+		
+		let loginId = $('input[name=loginId]').val().trim();
+		let password = $('#password').val();
+		
+		if (!loginId) {
+			alert("아이디를 입력하세요");
+			return false;
+		}
+		
+		if (!password) {
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+		
+	});
+});
+</script>

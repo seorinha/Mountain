@@ -2,7 +2,6 @@ package com.project.user.entity;
 
 import java.time.ZonedDateTime;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
