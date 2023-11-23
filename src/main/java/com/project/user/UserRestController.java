@@ -50,7 +50,14 @@ public class UserRestController {
 		
 	}
 	
-	
+	/**
+	 * 회원가입
+	 * @param loginId
+	 * @param password
+	 * @param name
+	 * @param email
+	 * @return
+	 */
 	@PostMapping("/sign-up")
 	public Map<String, Object> signUp(
 			@RequestParam("loginId") String loginId,
@@ -81,28 +88,27 @@ public class UserRestController {
 	 * 로그인
 	 * @param loginId
 	 * @param password
-	 * @param request
+	 * @param session
 	 * @return
 	 */
 	@PostMapping("/sign-in")
 	public Map<String, Object> signIn(
 			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
-			HttpServletRequest request) {
+			HttpSession session) {
 		
 		//password hashing
 		String hasedPassword = EncryptUtils.md5(password);
 		
 		//db insert
-		UserEntity user = userBO.getUserEntityByLoginIdPassword(loginId, password);
+		UserEntity userEntity = userBO.getUserEntityByLoginIdPassword(loginId, hasedPassword);
 		
 		//응답값
 		Map<String, Object> result = new HashMap<>();
-		if (user != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("userId", user.getId());
-			session.setAttribute("userName", user.getName());
-			session.setAttribute("userLoginId", user.getLoginId());
+		if (userEntity != null) {
+			session.setAttribute("userId", userEntity.getId());
+			session.setAttribute("userName", userEntity.getName());
+			session.setAttribute("userLoginId", userEntity.getLoginId());
 			
 			result.put("code", 200);
 			result.put("result", "성공");

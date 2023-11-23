@@ -55,6 +55,23 @@ $(document).ready(function() {
 			return false;
 		}
 		
+		//서버로 로그인 정보 보내기
+		//ajax
+		//form url, params
+		let url = $(this).attr('action');
+		console.log(url);
+		let params = $(this).serialize();
+		console.log(params);
+		
+		$.post(url, params) //request
+		.done(function(data) { //response
+			if (data.code == 200) {
+				location.href = "/home/home-list-view";
+			} else {
+				alert(data.errorMessage);
+			}
+		});
+		
 	});
 });
 </script>

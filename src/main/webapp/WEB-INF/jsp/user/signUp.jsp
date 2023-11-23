@@ -16,7 +16,7 @@
 					<td>
 						<div class="d-flex">
 							<input type="text" id="loginId" name="loginId" class="form-control col-8" placeholder="아이디를 입력하세요">
-							<button id="loginIdCheckBtn" class="btn btn-info ml-2">중복확인</button>
+							<button type="button" id="loginIdCheckBtn" class="btn btn-info ml-2">중복확인</button>
 						</div>
 						
 						<%--아이디 체크 결과 --%>
@@ -36,7 +36,7 @@
 				<tr>
 					<th>비밀번호 확인</th>
 					<td>
-						<input type="password" id="passwordConfirm" name="passwordConfirm" class="form-control col-8" placeholder="비밀번호를 입력하세요">
+						<input type="password" id="confirmPassword" name="confirmPassword" class="form-control col-8" placeholder="비밀번호를 입력하세요">
 					</td>
 				</tr>
 				
@@ -54,12 +54,11 @@
 					</td>
 				</tr>
 			</table>
+			<%--가입하기 영역 --%>
+			<div class="d-flex justify-content-center">
+				<button type="submit" id="signUpBtn" class="btn btn-success">가입하기</button>
+			</div>	
 		</form>
-		
-		<%--가입하기 영역 --%>
-		<div class="d-flex justify-content-center">
-			<button type="submit" id="signUpBtn" class="btn btn-success">가입하기</button>
-		</div>	
 		
 		<div class="already-sign-up mt-2 text-center">
 			<a href="/user/sign-in-view">이미 계정이 있으신가요?</a>	
@@ -141,7 +140,7 @@ $(document).ready(function() {
 		}
 		
 		
-		//아이디 중복 확인 후 사용가능한지 확인 -> idCheckOk가 d-none  일때 alert 띄운다
+		//아이디 중복 확인 후 사용가능한지 확인 
 		if ($('#idCheckOk').hasClass('d-none')) {
 			alert("아이디 중복확인을 다시 해주세요");
 			return false;
@@ -151,18 +150,18 @@ $(document).ready(function() {
 		
 		// ajax - 응답값이 json 
 		let url = $(this).attr('action');
+		console.log(url);
 		let params = $(this).serialize(); //serialize: 폼태그에 있는 name 속성-값으로 파라미터 구성
 		console.log(params);
 		
 		$.post(url, params) //request
 		.done(function(data) { //response
-			//{"code":200, "result":"성공"}
 			if (data.code == 200) { //성공
  				alert("가입을 환영합니다. 로그인을 해주세요");
 				location.href = "/user/sign-in-view";
 			} else {
 				//로직상 실패
-				alert("data.errorMessage");
+				alert(data.errorMessage);
 			}
 		});
 		
