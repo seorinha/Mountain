@@ -1,5 +1,7 @@
 package com.project.review.bo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,6 +12,10 @@ import com.project.review.mapper.ReviewMapper;
 @Service
 public class ReviewBO {
 
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	private static final int POST_MAX_SIZE = 3;
+	
 	@Autowired
 	private ReviewMapper reviewMapper;
 	

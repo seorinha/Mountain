@@ -34,11 +34,12 @@ public class ReviewRestController {
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session) {
 		
-		int mtId = (int)session.getAttribute("mtId");
-		int userId = (int)session.getAttribute("userId");
+		Integer mtId = (Integer)session.getAttribute("mtId");
+		Integer userId = (Integer)session.getAttribute("userId");
 		String userLoginId = (String)session.getAttribute("userLoginId");
 		
 		//db insert
+		reviewBO.addReview(mtId, userId, userLoginId, content, file);
 		
 		//응답값
 		Map<String, Object> result = new HashMap<>();
