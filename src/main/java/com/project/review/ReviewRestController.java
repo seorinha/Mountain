@@ -34,8 +34,8 @@ public class ReviewRestController {
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session) {
 		
-		Integer mtId = (Integer)session.getAttribute("mtId");
-		Integer userId = (Integer)session.getAttribute("userId");
+		int mtId = (int)session.getAttribute("mtId");
+		int userId = (int)session.getAttribute("userId");
 		String userLoginId = (String)session.getAttribute("userLoginId");
 		
 		//db insert

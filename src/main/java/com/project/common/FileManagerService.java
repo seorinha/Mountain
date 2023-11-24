@@ -18,10 +18,10 @@ public class FileManagerService {
 	
 	//이미지가 저장 될 경로(서버의 주소)
 	//학원 경로
-	public static final String FILE_UPLOAD_PATH = "D:\\하서린\\6_project\\workspace\\images/";
+	//public static final String FILE_UPLOAD_PATH = "D:\\하서린\\6_project\\workspace\\images/";
 	
 	//집경로
-	//public static final String FILE_UPLOAD_PATH = "C:\\Users\\ASUS\\Desktop\\웹개발\\6_project\\workspace\\images/";
+	public static final String FILE_UPLOAD_PATH = "C:\\Users\\ASUS\\Desktop\\웹개발\\6_project\\workspace\\images/";
 	
 	//이미지 저장
 	//input:userLoginId, file

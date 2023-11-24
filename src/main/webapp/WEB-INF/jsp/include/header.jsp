@@ -23,8 +23,16 @@
 		</nav>
 		
 		<%--로그인 정보 --%>
+		<div>
+			<c:if test="${not empty userName}">
+				<span>${userName}님 안녕하세요</span>
+				<a href="#">로그아웃</a>
+			</c:if>
+		</div>
+		
 		<div class="d-flex justify-content-end pt-2">
 			<a href="/user/sign-in-view" class="menu-login text-white">로그인</a>
 		</div>
+		
 	</div>
 </div>
