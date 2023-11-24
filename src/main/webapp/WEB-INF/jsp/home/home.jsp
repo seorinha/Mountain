@@ -9,7 +9,7 @@
 	
 	<%--산 목록 영역 --%>
 	<div class="mount-box rounded">
-		<a href="#">
+		<a href="/info/info-review-view">
 			<div class="p-3">
 				<h3 class="font-weight-bold">산이름</h3>
 				<h6>산 소재지</h6>
