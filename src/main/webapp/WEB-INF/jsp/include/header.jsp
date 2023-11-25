@@ -11,7 +11,7 @@
 		<nav>
 			<ul class="nav">
 				<li class="nav-item">
-					<a href="#" class="nav-link text-white">산 목록</a>
+					<a href="/home/home-list-view" class="nav-link text-white">산 목록</a>
 				</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link text-white">등산일지</a>

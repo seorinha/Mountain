@@ -4,7 +4,7 @@
 <div>
 	<%--후기작성하기 제목 영역 --%>
 	<div>
-		<h3 class="text-center mt-2">ㅇㅇ산 후기 작성하기</h3>
+		<h3 class="text-center mt-2"> 후기 작성하기</h3>
 		<hr>
 	</div>
 	

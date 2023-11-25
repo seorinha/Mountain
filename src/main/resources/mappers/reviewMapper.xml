@@ -3,6 +3,22 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.project.review.mapper.ReviewMapper">
+ <select id="selectReviewListByMtIdUserId" parameterType="int">
+ 	SELECT
+ 		`id`
+		, `mtId`
+		, `userId`
+		, `content`
+		, `imagePath`
+		, `createdAt`
+		, `updatedAt`
+	FROM
+		`review`
+	WHERE
+		`mtId` = #{mtId}
+		`userId` = #{userId}
+	ORDER BY `id` DESC
+ </select>
  <insert id="insertReview" parameterType="map">
  	INSERT INTO `review`
  	(
