@@ -26,12 +26,12 @@ public class ReviewRestController {
 			HttpSession session) {
 		
 		//session의 유저id꺼낸다
-		//int mtId = (int)session.getAttribute("mtId");
+		int mtId = (int)session.getAttribute("mtId");
 		int userId = (int)session.getAttribute("userId");
 		
 		
 		//db insert
-		reviewBO.addReview(userId, content);
+		reviewBO.addReview(mtId, userId, content);
 		
 		//응답값
 		Map<String, Object> result = new HashMap<>();

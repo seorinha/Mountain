@@ -15,12 +15,12 @@ public class ReviewBO {
 	//글쓰기
 	//input: 파라미터들
 	//output: x
-	public void addReview(int userId, String content) {
+	public void addReview(int mtId, int userId, String content) {
 		String imagePath = null;
 		
 		//TODO 이미지 잇으면 업로드
 		
-		reviewMapper.insertReview(userId, content, imagePath);
+		reviewMapper.insertReview(mtId, userId, content, imagePath);
 	}
 	
 	
