@@ -76,7 +76,7 @@ public class UserRestController {
 		
 		if (id == null) {
 			result.put("code", 500);
-			result.put("errorMessage", "회원가입 하는데 실패했습니다");
+			result.put("errorMessage", "회원가입에 실패했습니다");
 		} else {
 			result.put("code", 200);
 			result.put("result", "성공");
@@ -95,7 +95,7 @@ public class UserRestController {
 	public Map<String, Object> signIn(
 			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
-			HttpSession session) {
+			HttpServletRequest request) {
 		
 		//password hashing
 		String hasedPassword = EncryptUtils.md5(password);
@@ -106,6 +106,7 @@ public class UserRestController {
 		//응답값
 		Map<String, Object> result = new HashMap<>();
 		if (userEntity != null) {
+			HttpSession session = request.getSession();
 			session.setAttribute("userId", userEntity.getId());
 			session.setAttribute("userName", userEntity.getName());
 			session.setAttribute("userLoginId", userEntity.getLoginId());
