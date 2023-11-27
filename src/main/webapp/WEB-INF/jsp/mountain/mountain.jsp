@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div>
 	<%--산 정보 제목 영역 --%>
 	<div>
@@ -79,12 +80,14 @@
 				    </tr>
 			  	</thead>
 			  	<tbody>
+			  	<c:forEach items="${reviewList}" var="review">
 				    <tr>
-				      <td></td>
+				      <td>${review.id}</td>
 				      <td><a href="#"></a></td>
 				      <td></td>
-				      <td></td>
+				      <td><fmt:formatDate value="${review.createdAt}" pattern="yyyy년 M월 d일 HH:mm:dd" /></td>
 				    </tr>
+				    </c:forEach>
 			 	 </tbody>
 			</table>
 			

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.info.domain.Info;
 import com.project.mountain.domain.Mountain;
 import com.project.review.bo.ReviewBO;
 
