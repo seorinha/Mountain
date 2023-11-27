@@ -33,6 +33,8 @@ $(document).ready(function() {
 	$('#saveBtn').on('click', function() {
 		//alert("저장버튼");
 		let content = $('#content').val();
+		let fileName = $('#file').val(); //[object HTMLInputElement]
+		//alert(file); 
 		
 		//validation check
 		if (!content) {
@@ -40,11 +42,28 @@ $(document).ready(function() {
 			return;
 		}
 		
+		//파일이 업로드 된 경우에만 확장자 체크
+		if (fileName) {
+			//alert("파일이 있다");
+			let ext = fileName.split(".").pop().toLowerCase();
+			//alert(ext); //jpg
+			
+			if ($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1) { //배열 안에 이(['jpg', 'jpeg', 'png', 'gif']) ext가 있나?
+				//-1 : 인덱스가 없다(=이미지가 아니다)는 의미	
+				alert("이미지 파일만 업로드 할 수 있습니다");
+				$('#file').val(""); //이미지 파일이 아닌게 선택 되면 지운다
+				return;
+			}
+		}
+		
+		//return; //임시코드 (서버에 보내지 않도록)
+		
 		//이미지 업로드시 반드시 form 태그가 잇어야한다
 		//1. 위쪽 태그를 form으로 구성하거나 
 		//2. javascript로 form태그를 만들거나.
 		let formData = new FormData();
 		formData.append("content", content); // key는 form 태그의 name 속성과 같고 Request parameter명이 된다.
+		formData.append("file", $('#file')[0].files[0]);
 		
 		$.ajax({
 			//request

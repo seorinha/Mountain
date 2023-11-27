@@ -17,8 +17,7 @@ import com.project.review.domain.Review;
 @Controller
 public class InfoController {
 
-	@Autowired
-	private ReviewBO reviewBO;
+	
 	
 	
 	/**
@@ -35,7 +34,6 @@ public class InfoController {
 			return "redirect:/user/sign-in-view";
 		}
 		
-		List<Review> reviewList = ReviewBO.getReviewListByMtIdUserId(mtId, userId);
 		
 		model.addAttribute("info", "info");
 		model.addAttribute("viewName", "info/info");

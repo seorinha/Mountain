@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <div>
 	<%--산 정보 제목 영역 --%>
 	<div>
-		<h3 class="text-center mt-2">${info.mtName} 정보</h3>
+		<h3 class="text-center mt-2">산 정보</h3>
 		<hr>
 	</div>
 	
 	<%--산 정보 --%>
 	<div class="info-review-box">
-		<h3 class="font-weight-bold">${info.mtName}</h3>
+		<h3 class="font-weight-bold">ㅇㅇ산</h3>
 		<div class="d-flex">
 			<h6>산 소재지</h6>
 			<%--빈 별: 1. 비로그인일 때, 2. 로그인 상태에서 별 누르지않았을 때 --%>
@@ -65,7 +64,7 @@
 	
 	<%--후기 영역 --%>
 	<div>
-		<h5 class="text-center mt-2">${info.mtName} 후기</h5>
+		<h5 class="text-center mt-2">oo산 후기</h5>
 		<hr class="review-hr">
 		
 		<%-- 후기 리스트 테이블 --%>
@@ -80,15 +79,13 @@
 				    </tr>
 			  	</thead>
 			  	<tbody>
-				  	<c:forEach items="${info}" var="info">
-					    <tr>
-					      <td>${review.id}</td>
-					      <td><a href="/review/review-detail-view?reviewId=${review.id}">${review.content}</a></td>
-					      <td>${user.loginId}</td>
-					      <td><fmt:formatDate value="${review.createdAt}" pattern="yyyy년 M월 d일 HH:mm:dd" /></td>
-					    </tr>
-					</c:forEach>
-			 	</tbody>
+				    <tr>
+				      <td></td>
+				      <td><a href="#"></a></td>
+				      <td></td>
+				      <td></td>
+				    </tr>
+			 	 </tbody>
 			</table>
 			
 			<div class="d-flex justify-content-end">
