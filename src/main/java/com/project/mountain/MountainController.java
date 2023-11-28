@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.mountain.bo.MountainBO;
+import com.project.mountain.domain.Mountain;
 import com.project.review.bo.ReviewBO;
 import com.project.review.domain.Review;
 
@@ -32,12 +33,10 @@ public class MountainController {
 	 * @return
 	 */
 	@GetMapping("/mountain-review-view")
-	public String infoReviewView(
+	public String mountainReviewView(
 			@RequestParam("mtId") int mtId,
-			Model model, HttpSession session) {
-		
-		
-		//HttpSession session = request.getSession();
+			Model model,
+			HttpSession session) {
 		
 		// 로그인 여부 조회
 		Integer userId = (Integer)session.getAttribute("userId");
@@ -46,12 +45,8 @@ public class MountainController {
 			return "redirect:/user/sign-in-view";
 		}
 		
-//		Mountain mountain = new Mountain();
-//		int mtId = mountain.getId();
-//		
-//		session.setAttribute("mtId", mtId);
 		
-		
+		Mountain mountain = mountainBO.getMountainByMtId(mtId);
 		List<Review> reviewList = reviewBO.getReviewListByMtIdUserId(mtId, userId);
 		
 		model.addAttribute("reviewList", reviewList);

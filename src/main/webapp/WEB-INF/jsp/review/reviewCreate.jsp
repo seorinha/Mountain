@@ -78,7 +78,7 @@ $(document).ready(function() {
 			, success:function(data) {
 				if (data.result == "성공") {
 					alert("후기가 저장되었습니다.");
-					location.href = "/info/info-review-view";
+					location.href = "/mountain/mountain-review-view";
 				} else { //로직 실패
 					alert(data.errorMessage);
 				}

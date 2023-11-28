@@ -10,7 +10,7 @@
 	</div>
 	
 	<%--산 정보 --%>
-	<div class="info-review-box">
+	<div class="mountain-review-box">
 		<h3 class="font-weight-bold">ㅇㅇ산</h3>
 		<div class="d-flex">
 			<h6>산 소재지</h6>
@@ -83,7 +83,7 @@
 			  	<c:forEach items="${reviewList}" var="review">
 				    <tr>
 				      <td>${review.id}</td>
-				      <td><a href="#"></a></td>
+				      <td><a href="#">${review.content}</a></td>
 				      <td></td>
 				      <td><fmt:formatDate value="${review.createdAt}" pattern="yyyy년 M월 d일 HH:mm:dd" /></td>
 				    </tr>

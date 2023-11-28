@@ -20,7 +20,7 @@
 	
 	<%--버튼들 --%>
 	<div class="d-flex justify-content-between mt-3">
-		<a href="/info/info-review-view" class="btn btn-outline-secondary">목록</a>
+		<a href="mountain/mountain-review-view" class="btn btn-outline-secondary">목록</a>
 	
 		<div>
 			<button type="button" id="deleteBtn" class="btn btn-outline-danger">삭제</button>
