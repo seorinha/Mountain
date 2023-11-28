@@ -1,5 +1,7 @@
 package com.project.mountain.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +14,15 @@ public class MountainBO {
 	@Autowired
 	private MountainMapper mountainMapper;
 	
-	//input:mtId
+	//input:
 	//output:Mountain
-	public Mountain getMountainByMtId(int mtId) {
-		return mountainMapper.selectMountainByMtId(mtId);
+	public Mountain getMountain(int id) {
+		return mountainMapper.selectMountain(id);
 	}
+	
+	//home
+	public List<Mountain> getMountainList() {
+		return mountainMapper.selectMountainList();
+	}
+	
 }

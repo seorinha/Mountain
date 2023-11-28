@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div>
 	<%--산 목록 제목 영역 --%>
 	<div>
@@ -9,11 +11,13 @@
 	
 	<%--홈 산 목록 영역 --%>
 	<div class="mount-box rounded">
-		<a href="/mountain/mountain-review-view?mtId=${mountain.id}">
+	<c:forEach items="${mountainList}" var="mountain">        
+		<a href="/mountain/mountain-review-view?mountainId=${mountain.id}">
 			<div class="p-3">
-				<h3 class="font-weight-bold">산이름</h3>
-				<h6>산 소재지</h6>
+				<h3 class="font-weight-bold">${mountain.mtName}</h3>
+				<h6>${mountain.mtLocation}</h6>
 			</div>
 		</a>
+	</c:forEach>
 	</div>
 </div>

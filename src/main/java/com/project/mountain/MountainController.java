@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.mountain.bo.MountainBO;
 import com.project.mountain.domain.Mountain;
@@ -34,7 +34,7 @@ public class MountainController {
 	 */
 	@GetMapping("/mountain-review-view")
 	public String mountainReviewView(
-			@RequestParam("mtId") int mtId,
+			@ModelAttribute Mountain mountain,
 			Model model,
 			HttpSession session) {
 		
@@ -46,9 +46,12 @@ public class MountainController {
 		}
 		
 		
-		Mountain mountain = mountainBO.getMountainByMtId(mtId);
-		List<Review> reviewList = reviewBO.getReviewListByMtIdUserId(mtId, userId);
+		Mountain newMountain = mountainBO.getMountain(mountain.getId());
 		
+		List<Review> reviewList = reviewBO.getReviewListByMtIdUserId(id, userId);
+		
+		
+		model.addAttribute("mountain", newMountain);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("viewName", "mountain/mountain");
 		return "template/layout";

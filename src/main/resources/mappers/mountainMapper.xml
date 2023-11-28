@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.project.mountain.mapper.MountainMapper">
- <select id="selectMountainByMtId" parameterType="map" resultType="com.project.mountain.domain.Mountain">
+ <select id="selectMountain" resultType="com.project.mountain.domain.Mountain">
  	SELECT
 		`id`
 		, `mtName`
@@ -20,5 +20,12 @@
 		`mountain`
 	WHERE
 		`id` = #{mtId}
+ </select>
+ 
+ <select id="selectMountainList" resultType="com.project.mountain.domain.Mountain">
+ 	SELECT
+		*
+	FROM
+		`mountain`
  </select>
  </mapper>
