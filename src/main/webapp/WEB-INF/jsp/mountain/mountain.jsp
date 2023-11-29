@@ -69,35 +69,40 @@
 		<hr class="review-hr">
 		
 		<%-- 후기 리스트 테이블 --%>
-		<div class="review-table">
-			<table class="table">
-  				<thead class="thead-light">
-				    <tr>
-				      <th>NO.</th>
-				      <th>후기내용</th>
-				      <th>작성자</th>
-				      <th>작성시간</th>
-				    </tr>
-			  	</thead>
-			  	<tbody>
-			  	<c:forEach items="${reviewList}" var="review">
-				    <tr>
-				      <td>${review.id}</td>
-				      <td><a href="#">${review.content}</a></td>
-				      <td></td>
-				      <td><fmt:formatDate value="${review.createdAt}" pattern="yyyy년 M월 d일 HH:mm:dd" /></td>
-				    </tr>
-				 </c:forEach>
-			 	 </tbody>
-			</table>
-			
-			<div class="d-flex justify-content-end">
-				<a href="/review/review-create-view" class="btn btn-success">후기쓰기</a>
+		<c:if test="${empty reviewList}">
+				<div class="font-weight-bold text-center">작성된 리뷰가 없습니다.</div>
+		</c:if>
+		<c:if test="${not empty reviewList}">
+			<div class="review-table">
+				<table class="table">
+	  				<thead class="thead-light">
+					    <tr>
+					      <th>NO.</th>
+					      <th>후기내용</th>
+					      <th>작성자</th>
+					      <th>작성시간</th>
+					    </tr>
+				  	</thead>
+				  	<tbody>
+				  	<c:forEach items="${reviewList}" var="review">
+					    <tr>
+					      <td>${review.id}</td>
+					      <td><a href="#">${review.content}</a></td>
+					      <td></td>
+					      <td><fmt:formatDate value="${review.createdAt}" pattern="yyyy년 M월 d일 HH:mm:dd" /></td>
+					    </tr>
+					 </c:forEach>
+				 	 </tbody>
+				</table>
+				
+				
+				
 			</div>
-			
-			<%--paging --%>
-			
-			
-		</div>
+		</c:if>
+				<div class="d-flex justify-content-end">
+					<a href="/review/review-create-view" class="btn btn-success">후기쓰기</a>
+				</div>
+				
+				<%--paging --%>
 	</div>
 </div>

@@ -12,7 +12,7 @@
 	<%--홈 산 목록 영역 --%>
 	<c:forEach items="${mountainList}" var="mountain">        
 	<div class="mount-box rounded">
-		<a href="/mountain/mountain-review-view?mountainId=${mountain.id}">
+		<a href="/mountain/mountain-review-view?mtId=${mountain.id}">
 			<div class="p-3">
 				<h3 class="font-weight-bold">${mountain.mtName}</h3>
 				<h6>${mountain.mtLocation}</h6>
