@@ -24,8 +24,8 @@ public class ReviewBO {
 	//리뷰 리스트 
 	//input: mtId, userId
 	//output: List<Review>
-	public List<Review> getReviewListByMtIdUserId(int mtId, int userId) {
-		return reviewMapper.selectReviewListByMtIdUserId(mtId, userId);
+	public List<Review> getReviewListByMtId(int mtId) {
+		return reviewMapper.selectReviewListByMtId(mtId);
 		
 	}
 	

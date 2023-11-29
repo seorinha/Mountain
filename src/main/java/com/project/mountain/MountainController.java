@@ -2,6 +2,7 @@ package com.project.mountain;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.mountain.bo.MountainBO;
 import com.project.mountain.domain.Mountain;
@@ -36,8 +38,14 @@ public class MountainController {
 	public String mountainReviewView(
 			@ModelAttribute Mountain mountain,
 			Model model,
-			HttpSession session) {
+			HttpServletRequest request) {
 		
+		Mountain mountainId = new Mountain();
+		int mtId = mountain.getId();
+		
+		HttpSession session = request.getSession();
+		 session.setAttribute("mtId", mtId);
+		 
 		// 로그인 여부 조회
 		Integer userId = (Integer)session.getAttribute("userId");
 		if (userId == null) {
@@ -45,13 +53,10 @@ public class MountainController {
 			return "redirect:/user/sign-in-view";
 		}
 		
+		mountain = mountainBO.getMountainById(mountain.getId());
+		List<Review> reviewList = reviewBO.getReviewListByMtId(mtId);
 		
-		Mountain newMountain = mountainBO.getMountain(mountain.getId());
-		
-		List<Review> reviewList = reviewBO.getReviewListByMtIdUserId(id, userId);
-		
-		
-		model.addAttribute("mountain", newMountain);
+		model.addAttribute("mountain", mountain);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("viewName", "mountain/mountain");
 		return "template/layout";

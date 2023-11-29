@@ -16,8 +16,8 @@ public class MountainBO {
 	
 	//input:
 	//output:Mountain
-	public Mountain getMountain(int id) {
-		return mountainMapper.selectMountain(id);
+	public Mountain getMountainById(int id) {
+		return mountainMapper.selectMountainById(id);
 	}
 	
 	//home

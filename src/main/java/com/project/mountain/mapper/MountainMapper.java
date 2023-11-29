@@ -10,7 +10,7 @@ import com.project.mountain.domain.Mountain;
 @Repository
 public interface MountainMapper {
 
-	public Mountain selectMountain(int id);
+	public Mountain selectMountainById(int id);
 	
 	//home
 	public List<Mountain> selectMountainList();

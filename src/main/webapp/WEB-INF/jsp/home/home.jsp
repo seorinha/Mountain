@@ -10,14 +10,14 @@
 	</div>
 	
 	<%--홈 산 목록 영역 --%>
-	<div class="mount-box rounded">
 	<c:forEach items="${mountainList}" var="mountain">        
+	<div class="mount-box rounded">
 		<a href="/mountain/mountain-review-view?mountainId=${mountain.id}">
 			<div class="p-3">
 				<h3 class="font-weight-bold">${mountain.mtName}</h3>
 				<h6>${mountain.mtLocation}</h6>
 			</div>
 		</a>
-	</c:forEach>
 	</div>
+	</c:forEach>
 </div>

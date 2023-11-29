@@ -11,7 +11,7 @@ import com.project.review.domain.Review;
 public interface ReviewMapper {
 
 	//리뷰 리스트
-	public List<Review> selectReviewListByMtIdUserId(int mtId, int userId);
+	public List<Review> selectReviewListByMtId(int mtId);
 	
 	//글쓰기
 	public void insertReview(
