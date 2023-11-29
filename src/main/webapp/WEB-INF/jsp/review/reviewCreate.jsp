@@ -18,10 +18,10 @@
 	
 	<%--버튼들 --%>
 	<div class="d-flex justify-content-between mt-3">
-		<a href="/info/info-review-view" class="btn btn-outline-secondary">목록</a>
+		<a href="#" class="btn btn-outline-secondary">목록</a>
 	
 		<div>
-			<button type="button" id="saveBtn" class="btn btn-outline-info">작성완료</button>
+			<button type="button" id="saveBtn" class="btn btn-outline-info" data-mountain-id="${mountain.id}">작성완료</button>
 		</div>
 	</div>
 	
@@ -32,6 +32,11 @@ $(document).ready(function() {
 	//글 저장 버튼
 	$('#saveBtn').on('click', function() {
 		//alert("저장버튼");
+		console.log("Button Clicked");
+		
+		let mtId = $(this).data('mountain-id');
+		alert(mtId);
+		
 		let content = $('#content').val();
 		let fileName = $('#file').val(); //[object HTMLInputElement]
 		//alert(file); 
@@ -78,7 +83,7 @@ $(document).ready(function() {
 			, success:function(data) {
 				if (data.result == "성공") {
 					alert("후기가 저장되었습니다.");
-					location.href = "/mountain/mountain-review-view";
+					location.href = "/mountain/mountain-review-view?mtId=${mountain.id}";
 				} else { //로직 실패
 					alert(data.errorMessage);
 				}

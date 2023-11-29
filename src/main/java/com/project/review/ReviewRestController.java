@@ -35,7 +35,6 @@ public class ReviewRestController {
 		HttpSession session = request.getSession();
 		 session.setAttribute("mtId", mtId);
 		
-		//session의 유저id꺼낸다
 		 int userId = (int)session.getAttribute("userId");
 		 String userLoginId = (String)session.getAttribute("userLoginId");
 		

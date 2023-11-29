@@ -94,12 +94,11 @@
 					 </c:forEach>
 				 	 </tbody>
 				</table>
-				
-				
-				
 			</div>
 		</c:if>
 				<div class="d-flex justify-content-end">
+					<%-- <a href="/review/review-create-view" class="btn btn-success" data-mountain-id="${mountain.id}">후기쓰기</a>--%>
+					<%-- <button type="button" class="createReview-btn btn btn-success" data-mountain-id="${mountain.id}">후기쓰기</button>--%>
 					<a href="/review/review-create-view" class="btn btn-success">후기쓰기</a>
 				</div>
 				
