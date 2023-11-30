@@ -33,16 +33,12 @@ public class ReviewRestController {
 	 */
 	@PostMapping("/create")
 	public Map<String, Object> create(
+			@RequestParam("mtId") int mtId,
 			@RequestParam("content") String content,
 			@RequestParam(value = "file", required = false) MultipartFile file,
-			HttpServletRequest request) {
+			HttpSession session) {
 		
-		Mountain mountain = new Mountain();
-		int mtId = mountain.getId();
-		
-		HttpSession session = request.getSession();
-		 session.setAttribute("mtId", mtId);
-		
+	
 		 int userId = (int)session.getAttribute("userId");
 		 String userLoginId = (String)session.getAttribute("userLoginId");
 		

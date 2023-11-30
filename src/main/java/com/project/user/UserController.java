@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.aop.TimeTrace;
+
 @RequestMapping("/user")
 @Controller
 public class UserController {
@@ -27,6 +29,7 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
+	@TimeTrace
 	@GetMapping("/sign-in-view")
 	public String signInView(Model model) {
 		model.addAttribute("viewName", "user/signIn");

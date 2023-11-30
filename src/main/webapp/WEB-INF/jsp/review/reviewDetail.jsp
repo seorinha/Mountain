@@ -44,6 +44,73 @@
 		let fileName = $('#file').val();
 		alert(reviewId);
 		
-	 });
+		// validation check
+		if (!content) {
+			alert("내용을 입력하세요.");
+			return;
+		}
+		
+		//파일이 업로드 된 경우에만 확장자 체크
+		if (fileName) { //파일이 있을 때
+			//alert("파일이 있다");
+			//확장자만 뽑은 후 소문자로 변경한다
+			let ext = fileName.split(".").pop().toLowerCase();
+			//alert(ext);
+			
+			if ($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1) { 	
+				alert("이미지 파일만 업로드 할 수 있습니다");
+				$('#file').val(""); //이미지 파일이 아닌게 선택 되면 지운다
+				return;
+			}
+		}
+		
+		// request param 구성
+		let formData = new FormData();
+		formData.append("reviewId", reviewId);
+		// key는 form 태그의 name 속성과 같고 Request parameter명이 된다.
+		formData.append("content", content);
+		formData.append("file", $('#file')[0].files[0]);
+		
+		$.ajax({
+			// request
+			type:"put" //put은 post의 일종이다
+			, url:"/review/update"
+			, data:formData
+			, enctype:"multipart/form-data" // 파일 업로드를 위한 필수 설정
+			, processData:false // 파일 업로드를 위한 필수 설정
+			, contentType:false // 파일 업로드를 위한 필수 설정
+			
+			// response
+			, success:function(data) {
+				if (data.result == "성공") {
+					alert("후기가 수정되었습니다.");
+					location.reload(true);
+				} else {
+					// 로직 실패
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(request, status, error) {
+				alert("후기를 저장하는데 실패했습니다.");
+			}
+		});
+	});
+		
+	//글 삭제 버튼
+	$('#deleteBtn').on('click', function(e) {
+		//alert("삭제버튼");
+		e.preventDefault();
+		
+
+		
+		
+	});
+	
+	
+	
+	
+		
+		
+
  });
  </script>

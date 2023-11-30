@@ -36,16 +36,10 @@ public class MountainController {
 	 */
 	@GetMapping("/mountain-review-view")
 	public String mountainReviewView(
-			@ModelAttribute Mountain mountain,
+			@RequestParam("mtId") int mtId, 
 			Model model,
-			HttpServletRequest request) {
+			HttpSession session) {
 		
-		Mountain mountainId = new Mountain();
-		int mtId = mountain.getId();
-		
-		HttpSession session = request.getSession();
-		 session.setAttribute("mtId", mtId);
-		 
 		// 로그인 여부 조회
 		Integer userId = (Integer)session.getAttribute("userId");
 		if (userId == null) {
@@ -53,7 +47,7 @@ public class MountainController {
 			return "redirect:/user/sign-in-view";
 		}
 		
-		mountain = mountainBO.getMountainById(mountain.getId());
+		Mountain mountain = mountainBO.getMountainById(mtId);
 		List<Review> reviewList = reviewBO.getReviewListByMtId(mtId);
 		
 		model.addAttribute("mountain", mountain);

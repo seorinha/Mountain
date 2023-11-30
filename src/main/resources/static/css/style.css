@@ -23,8 +23,10 @@ footer {
 	border-width: 3px;
 	border-style: solid;
 }
-.mount-box:hover {background-color:darkgray;
-text-decoration:none; color:#000;}
+.mount-box:hover {
+	background-color:darkgray;
+	text-decoration:none; 
+	color:#000;}
 
 
 .already-sign-up:hover {

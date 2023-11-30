@@ -15,7 +15,7 @@
 	</div>
 	
 	<%--글 작성 영역 --%>
-	<textarea id="content" class="form-control" rows="10" placeholder="후기를 입력하세요"></textarea>
+	<textarea id="content${mountain.id}" class="form-control" rows="10" placeholder="후기를 입력하세요"></textarea>
 	
 	<%--버튼들 --%>
 	<div class="d-flex justify-content-between mt-3">
@@ -35,9 +35,9 @@ $(document).ready(function() {
 		//alert("저장버튼");
 		
 		let mtId = $(this).data('mountain-id');
-		console.log(mtId);
+		//alert(mtId);
 		
-		let content = $('#content').val();
+		let content = $('#content' + mtId).val();
 		let fileName = $('#file').val(); //[object HTMLInputElement]
 		//alert(file); 
 		
@@ -83,7 +83,7 @@ $(document).ready(function() {
 			, success:function(data) {
 				if (data.result == "성공") {
 					alert("후기가 저장되었습니다.");
-					location.href = "/mountain/mountain-review-view?mtId=${mountain.id}";
+					location.href = "/home/home-list-view";
 				} else { //로직 실패
 					alert(data.errorMessage);
 				}
