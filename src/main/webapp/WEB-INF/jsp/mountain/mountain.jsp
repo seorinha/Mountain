@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div>
 	<%--산 정보 제목 영역 --%>
 	<div>
@@ -9,7 +9,7 @@
 		<hr>
 	</div>
 	
-	<%--산 정보 --%>
+	<%--산 정보 박스 --%>
 	<div class="mountain-review-box">
 		<h3 class="font-weight-bold">${mountain.mtName}</h3>
 		<div class="d-flex">
@@ -87,7 +87,7 @@
 				  	<c:forEach items="${reviewList}" var="review">
 					    <tr>
 					      <td>${review.id}</td>
-					      <td><a href="#">${review.content}</a></td>
+					      <td><a href="/review/review-detail-view?reviewId=${review.id}">${review.content}</a></td>
 					      <td></td>
 					      <td><fmt:formatDate value="${review.createdAt}" pattern="yyyy년 M월 d일 HH:mm:dd" /></td>
 					    </tr>

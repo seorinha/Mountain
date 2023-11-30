@@ -20,6 +20,15 @@ public interface ReviewMapper {
 			@Param("content") String content,
 			@Param("imagePath") String imagePath);
 	
+	//글 상세 가져오기
+	public Review selectReviewByReviewIdUserId(
+			@Param("reviewId") int reviewId, 
+    		@Param("userId") int userId);
 	
-	
+	//글 수정하기
+	public void updateReviewByReviewIdUserId(
+    		@Param("reviewId") int reviewId, 
+    		@Param("userId") int userId, 
+    		@Param("content") String content, 
+    		@Param("imagePath") String imagePath);
 }

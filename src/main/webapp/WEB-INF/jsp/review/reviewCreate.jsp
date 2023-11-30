@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div>
 	<%--후기작성하기 제목 영역 --%>
 	<div>
@@ -32,10 +33,9 @@ $(document).ready(function() {
 	//글 저장 버튼
 	$('#saveBtn').on('click', function() {
 		//alert("저장버튼");
-		console.log("Button Clicked");
 		
 		let mtId = $(this).data('mountain-id');
-		alert(mtId);
+		console.log(mtId);
 		
 		let content = $('#content').val();
 		let fileName = $('#file').val(); //[object HTMLInputElement]

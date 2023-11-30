@@ -38,4 +38,32 @@
  		, NOW()
  	)
  </insert>
+ <select id="selectReviewByReviewIdUserId" parameterType="map" resultType="com.project.review.domain.Review">
+ 		SELECT
+			`id`
+			, `mtId`
+			, `userId`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`review`
+		WHERE
+			`userId` = #{userId}
+			AND `id` = #{reviewId}
+ </select>
+ <update id="updateReviewByReviewIdUserId" parameterType="map">
+ 		UPDATE `review`
+ 		SET
+ 			`content` = #{content}
+ 			<!-- imagePath가 있을 때만 수정 -->
+ 			<if test="imagePath != null">
+ 			, `imagePath` = #{imagePath}
+ 			</if>
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`id` = #{reviewId}
+ 			AND `userId` = #{userId}
+ 	</update>
  </mapper>
