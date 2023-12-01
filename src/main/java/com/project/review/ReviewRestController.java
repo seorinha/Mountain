@@ -3,10 +3,10 @@ package com.project.review;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.mountain.domain.Mountain;
 import com.project.review.bo.ReviewBO;
 
 @RequestMapping("/review")
@@ -25,10 +24,11 @@ public class ReviewRestController {
 	private ReviewBO reviewBO;	
 	
 	/**
-	 * 
+	 * 리뷰 작성
+	 * @param mtId
 	 * @param content
 	 * @param file
-	 * @param request
+	 * @param session
 	 * @return
 	 */
 	@PostMapping("/create")
@@ -79,6 +79,28 @@ public class ReviewRestController {
 		result.put("result", "성공");
 		
 		return result;
-		
 	}
+	
+	
+	//글 삭제하기
+	@DeleteMapping("/delete")
+	public Map<String, Object> delete(
+			@RequestParam("reviewId") int reviewId,
+			HttpSession session) {
+		
+		int userId = (int)session.getAttribute("userId");
+		
+		//삭제
+		reviewBO.deleteReviewByReviewIdUserId(reviewId, userId);
+				
+		//응답값
+		Map<String, Object> result = new HashMap<>();
+		
+		result.put("code", 200);
+		result.put("result", "성공");
+			
+		return result;
+	}
+	
+	
 }

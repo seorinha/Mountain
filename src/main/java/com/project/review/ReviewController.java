@@ -25,7 +25,11 @@ public class ReviewController {
 	 * @return
 	 */
 	@GetMapping("/review-create-view")
-	public String reviewCreateView(Model model) {
+	public String reviewCreateView(
+			@RequestParam("mtId") int mtId,
+			Model model) {
+		
+		model.addAttribute("mtId", mtId);
 		model.addAttribute("viewName", "review/reviewCreate");
 		return "template/layout";
 	}
@@ -46,7 +50,8 @@ public class ReviewController {
 		
 		Review review = reviewBO.getReviewByReviewIdUserId(reviewId, userId);
 		
-		model.addAttribute("reivew", "review");
+		model.addAttribute("review", review);
+		model.addAttribute("reviewId", reviewId);
 		model.addAttribute("viewName", "review/reviewDetail");
 		return "template/layout";
 	}

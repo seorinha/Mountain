@@ -22,7 +22,7 @@
 		<a href="#" class="btn btn-outline-secondary">목록</a>
 	
 		<div>
-			<button type="button" id="saveBtn" class="btn btn-outline-info" data-mountain-id="${mountain.id}">작성완료</button>
+			<button type="button" id="saveBtn" class="btn btn-outline-info" data-mountain-id="${mtId}">작성완료</button>
 		</div>
 	</div>
 	
@@ -34,7 +34,7 @@ $(document).ready(function() {
 	$('#saveBtn').on('click', function() {
 		//alert("저장버튼");
 		
-		//let mtId = $(this).data('mountain.id');
+		let mtId = $(this).data('mountain-id');
 		//alert(mtId);
 		
 		let content = $('#content').val();
@@ -67,6 +67,7 @@ $(document).ready(function() {
 		//1. 위쪽 태그를 form으로 구성하거나 
 		//2. javascript로 form태그를 만들거나.
 		let formData = new FormData();
+		formData.append("mtId", mtId);
 		formData.append("content", content); // key는 form 태그의 name 속성과 같고 Request parameter명이 된다.
 		formData.append("file", $('#file')[0].files[0]);
 		
@@ -83,7 +84,7 @@ $(document).ready(function() {
 			, success:function(data) {
 				if (data.result == "성공") {
 					alert("후기가 저장되었습니다.");
-					location.href = "/home/home-list-view";
+					location.href = "/mountain/mountain-review-view?mtId=${mtId}";
 				} else { //로직 실패
 					alert(data.errorMessage);
 				}

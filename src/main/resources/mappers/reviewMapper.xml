@@ -66,4 +66,12 @@
  			`id` = #{reviewId}
  			AND `userId` = #{userId}
  	</update>
+ 	<delete id="deleteReviewByReviewIdUserId" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`review`
+ 		WHERE
+ 			`id` = #{reviewId}
+			AND `userId` = #{userId}
+ 	</delete>
  </mapper>

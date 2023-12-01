@@ -31,4 +31,10 @@ public interface ReviewMapper {
     		@Param("userId") int userId, 
     		@Param("content") String content, 
     		@Param("imagePath") String imagePath);
+	
+	
+	//글 삭제하기
+	public void deleteReviewByReviewIdUserId(
+			@Param("reviewId") int reviewId,
+    		@Param("userId") int userId);
 }

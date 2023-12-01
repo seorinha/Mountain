@@ -92,4 +92,25 @@ public class ReviewBO {
 				
 			}
 	
+	
+	//글 삭제하기
+	//input:reviewId, userId
+	//output:x
+	public void deleteReviewByReviewIdUserId(int reviewId, int userId) {
+		// 기존 글 가져옴(이미지가 있으면 삭제야하기 떼문)
+		Review review = reviewMapper.selectReviewByReviewIdUserId(reviewId, userId);
+		if (review == null) {
+			logger.info("[후기 삭제] review가 null. reviewId:{}, userId:{}", reviewId, userId);
+			return;
+		}
+		//기존 이미지가 존재하면 -> 삭제
+		if (review.getImagePath() !=null) {
+			fileManager.deleteFile(review.getImagePath());
+		}
+		
+		//db 삭제
+		reviewMapper.deleteReviewByReviewIdUserId(reviewId, userId);
+	}
+	
+	
 }
