@@ -15,7 +15,7 @@
 	</div>
 	
 	<%--글 작성 영역 --%>
-	<textarea id="content${mountain.id}" class="form-control" rows="10" placeholder="후기를 입력하세요"></textarea>
+	<textarea id="content" class="form-control" rows="10" placeholder="후기를 입력하세요"></textarea>
 	
 	<%--버튼들 --%>
 	<div class="d-flex justify-content-between mt-3">
@@ -34,10 +34,10 @@ $(document).ready(function() {
 	$('#saveBtn').on('click', function() {
 		//alert("저장버튼");
 		
-		let mtId = $(this).data('mountain-id');
+		//let mtId = $(this).data('mountain.id');
 		//alert(mtId);
 		
-		let content = $('#content' + mtId).val();
+		let content = $('#content').val();
 		let fileName = $('#file').val(); //[object HTMLInputElement]
 		//alert(file); 
 		
