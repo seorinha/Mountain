@@ -40,4 +40,10 @@ public class UserBO {
 	public UserEntity getUserEntityByLoginIdPassword(String loginId, String password) {
 		return userRepository.findByLoginIdAndPassword(loginId, password);
 	}
+	
+
+	//댓글 뿌릴 때 id로만 조회하는게 필요해서 만든 메소드
+		public UserEntity getUserEntityById(int userId) {
+			return userRepository.findById(userId).orElse(null); 
+		}
 }
