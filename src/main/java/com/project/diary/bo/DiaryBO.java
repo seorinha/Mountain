@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.comment.bo.CommentBO;
+import com.project.comment.domain.CommentView;
 import com.project.diary.domain.CardView;
 import com.project.post.bo.PostBO;
 import com.project.post.entity.PostEntity;
@@ -20,6 +22,9 @@ public class DiaryBO {
 	
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private CommentBO commentBO;
 	
 	//다이어리 카드 구성
 	//input : userId(비로그인/로그인 허용 null도 허용)
@@ -44,6 +49,8 @@ public class DiaryBO {
 			cardView.setUser(user);
 			
 			//댓글
+			List<CommentView> commentList = commentBO.generateCommentViewListByPostId(post.getId());
+			cardView.setCommentList(commentList);
 			
 			//좋아요 갯수
 			

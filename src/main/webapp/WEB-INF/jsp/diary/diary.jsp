@@ -65,6 +65,23 @@
 					<div class="ml-3 mb-1 font-weight-bold">댓글</div>
 				</div>
 				
+				<%-- 댓글 목록 --%>
+				<div class="card-comment-list m-2">
+					<c:forEach items="${card.commentList}" var="commentView">
+					<%-- 댓글 내용들 --%>
+					<div class="card-comment m-1">
+						<span class="font-weight-bold">${commentView.user.loginId}</span>
+						<span>${commentView.comment.content}</span>
+						
+					</div>
+					</c:forEach>
+					
+					<%-- 댓글 쓰기 --%>
+					<div class="comment-write d-flex border-top mt-2">
+						<input type="text" class="form-control border-0 mr-2 comment-input" placeholder="댓글 달기"/> 
+						<button type="button" class="comment-btn btn btn-light" data-post-id="${card.post.id}">게시</button>
+					</div>
+				</div> <%--// 댓글 목록 끝 --%>
 				
 				
 					
@@ -156,6 +173,34 @@ $(document).ready(function() {
 			}
 		});  // --- ajax 끝
 	}); //---다이어리쓰기 끝
+	
+	//댓글쓰기
+	$('.comment-btn').on('click', function() {
+		//alert("aaa");
+		let postId = $(this).data('post-id');
+		//alert(postId);
+		
+		let content = $(this).prev().val().trim();
+		
+		$.ajax({
+			type:"post"
+			, url:"/comment/create"
+			, data:{"postId":postId, "content":content}
+		
+			, success: function(data) {
+				if (data.code == 200) {
+					//alert("성공");
+					location.reload(true);
+				} else if (data.code == 500) {
+					alert(data.errorMessage);
+					location.href = "/user/sign-in-view";
+				}
+			}
+			, error: function(request, status, error) {
+				alert("댓글 쓰기 실패했습니다.");
+			}
+		});
+	}); //---댓글쓰기 끝
 	
 	
 });

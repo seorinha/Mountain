@@ -1,5 +1,8 @@
 package com.project.diary.domain;
 
+import java.util.List;
+
+import com.project.comment.domain.CommentView;
 import com.project.post.entity.PostEntity;
 import com.project.user.entity.UserEntity;
 
@@ -15,7 +18,7 @@ public class CardView {
 	private UserEntity user;
 	
 	//댓글
-	
+	private List<CommentView> commentList;
 	//좋아요 갯수
 	
 	//좋아요 눌렀나 
