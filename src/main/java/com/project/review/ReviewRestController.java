@@ -58,7 +58,14 @@ public class ReviewRestController {
 	}
 	
 	
-	//글 수정하기
+	/**
+	 * 리뷰 수정
+	 * @param reviewId
+	 * @param content
+	 * @param file
+	 * @param session
+	 * @return
+	 */
 	@PutMapping("/update")
 	public Map<String, Object> update(			
 			@RequestParam("reviewId") int reviewId,
