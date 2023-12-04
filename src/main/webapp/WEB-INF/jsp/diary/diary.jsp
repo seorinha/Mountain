@@ -53,6 +53,13 @@
 					<img src="${card.post.imagePath}" class="w-100" alt="본문 이미지">
 				</div>
 				
+				<%--좋아요 --%>
+				<div>
+					<%--빈하트 --%>
+					
+					<%--채워진하트 --%>
+				</div>
+				
 				<%-- 글 --%>
 				<div class="card-post m-3">
 					<span class="font-weight-bold">${card.user.loginId}</span>
@@ -69,16 +76,24 @@
 				<div class="card-comment-list m-2">
 					<c:forEach items="${card.commentList}" var="commentView">
 					<%-- 댓글 내용들 --%>
-					<div class="card-comment m-1">
-						<span class="font-weight-bold">${commentView.user.loginId}</span>
-						<span>${commentView.comment.content}</span>
-						
+					<div class="card-comment m-1 d-flex justify-content-between">
+						<div>
+							<span class="font-weight-bold">${commentView.user.loginId}</span>
+							<span>${commentView.comment.content}</span>
+						</div>
+						<%-- 댓글 삭제 버튼 --%>
+						<%--로그인 된 사람과 댓글쓴이가 일치할 때 삭제버튼 노출 --%>
+						<c:if test="${userId eq commentView.user.id}">
+							<a href="#" class="comment-del-btn" data-comment-id="${commentView.comment.id}">
+								<img src="https://www.iconninja.com/files/898/840/1021/trash-icon.png" width="18" height="20">
+							</a>
+						</c:if>
 					</div>
 					</c:forEach>
 					
 					<%-- 댓글 쓰기 --%>
 					<div class="comment-write d-flex border-top mt-2">
-						<input type="text" class="form-control border-0 mr-2 comment-input" placeholder="댓글 달기"/> 
+						<input type="text" id="comment-text" class="form-control mr-2 ml-2 comment-input" placeholder="댓글 달기"/> 
 						<button type="button" class="comment-btn btn btn-light" data-post-id="${card.post.id}">게시</button>
 					</div>
 				</div> <%--// 댓글 목록 끝 --%>
@@ -201,6 +216,34 @@ $(document).ready(function() {
 			}
 		});
 	}); //---댓글쓰기 끝
+	
+	//댓글 삭제
+	$('.comment-del-btn').on('click', function(e) {
+		//alert("댓글 삭제");
+		e.preventDefault();
+		
+		let commentId = $(this).data("comment-id");
+		//alert(commentId);
+		
+		$.ajax({
+			//request
+			type:"delete"
+			, url:"/comment/delete"
+			, data:{"commentId":commentId}
+		
+			//response
+			, success: function(data) {
+				if (data.code == 200) {
+					location.reload(true);
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error: function() {
+				alert("댓글 삭제에 실패했습니다.");
+			}
+		});
+	}); //--댓글 삭제 끝
 	
 	
 });
