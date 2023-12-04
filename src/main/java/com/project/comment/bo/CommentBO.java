@@ -31,7 +31,7 @@ public class CommentBO {
 	//글 1개당 댓글List 생성
 	//input:postId
 	//output:List<CommentView>
-public List<CommentView> generateCommentViewListByPostId(int postId) {
+	public List<CommentView> generateCommentViewListByPostId(int postId) {
 		
 		List<CommentView> commentViewList = new ArrayList<>();  //[] 비어잇음
 		
@@ -53,6 +53,13 @@ public List<CommentView> generateCommentViewListByPostId(int postId) {
 			commentViewList.add(commentView);
 		}
 		return commentViewList;
+	}
+	
+	//댓글 삭제
+	//input:commentId
+	//output:x
+	public void deleteCommentById(int id) {
+		commentMapper.deleteCommentById(id);
 	}
 	
 }

@@ -19,5 +19,6 @@ public interface CommentMapper {
 	//댓글 뿌리기
 	public List<Comment> selectCommentListByPostId(int postId);
 	
-	
+	//댓글 삭제
+	public void deleteCommentById(int id);
 }
