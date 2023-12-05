@@ -56,8 +56,18 @@
 				<%--좋아요 --%>
 				<div>
 					<%--빈하트 --%>
+					<c:if test="${card.filledLike == false}">
+						<a href="#" id="unfilledHeart" class="like-btn" data-post-id="${card.post.id}">
+							<img src="/img/unfilled-heart.png" width="18" height="18" alt="unfilledHeart">
+						</a>
+					</c:if>
 					
 					<%--채워진하트 --%>
+					<c:if test="${card.filledLike == true}">	
+						<a href="#" id="filledHeart" class="like-btn" data-post-id="${card.post.id}">
+							<img src="/img/filled-heart.png" width="18" height="18" alt="채워진하트">
+						</a>
+					</c:if>
 				</div>
 				
 				<%-- 글 --%>
@@ -246,6 +256,33 @@ $(document).ready(function() {
 	}); //--댓글 삭제 끝
 	
 	
+	//좋아요 누르기,해제
+	$('.like-btn').on('click', function(e) {
+		e.preventDefault();
+		
+		let postId = $(this).data("post-id");
+		
+		$.ajax({
+			// request
+			url: "/like/" + postId
+			
+			// response
+			, success:function(data) {
+				if (data.code == 200) {
+					location.reload(true); // 새로고침 => timeline 다시 가져옴 -> 하트 채워지거나 or 비워지거나
+				} else if (data.code == 500) {
+					// 비로그인 상태
+					alert(data.errorMessage);
+					location.href = "/user/sign-in-view"; // 로그인 페이지로 이동
+				}
+			}
+			, error:function(request, status, error) {
+				alert("좋아요 하는데 실패했습니다.");
+			}
+		}); // -- 좋아요 끝
+		
+		
+	});
 });
 
 </script>

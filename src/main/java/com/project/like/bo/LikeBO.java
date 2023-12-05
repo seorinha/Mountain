@@ -24,4 +24,10 @@ public class LikeBO {
 		}
 	}
 	
+	//좋아요가 눌렸는지
+	//input:postId, userId
+	//output:boolean true, false
+	//public boolean filledLike(int postId, Integer userId) {
+		
+	//}
 }
