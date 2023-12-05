@@ -43,9 +43,7 @@
 						</c:if>
 					</div>
 					<%--날짜 --%>
-					<small>
-						<fmt:formatDate value="${post.createdAt}" pattern="yyyy년 M월 d일" />					
-					</small>
+					<fmt:formatDate value="${post.createdAt}" pattern="yyyy년 M월 d일" />					
 				</div>	
 				
 				<%-- 카드 이미지 --%>
@@ -54,25 +52,27 @@
 				</div>
 				
 				<%--좋아요 --%>
-				<div>
+				<div class="ml-2">
 					<%--빈하트 --%>
 					<c:if test="${card.filledLike == false}">
 						<a href="#" id="unfilledHeart" class="like-btn" data-post-id="${card.post.id}">
-							<img src="/img/unfilled-heart.png" width="18" height="18" alt="unfilledHeart">
+							<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-heart-outline-512.png" width="22" height="22" alt="unfilledHeart">
 						</a>
 					</c:if>
 					
 					<%--채워진하트 --%>
 					<c:if test="${card.filledLike == true}">	
 						<a href="#" id="filledHeart" class="like-btn" data-post-id="${card.post.id}">
-							<img src="/img/filled-heart.png" width="18" height="18" alt="채워진하트">
+							<img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-256.png" width="22" height="22" alt="filledHeart">
 						</a>
+					</c:if>
+					<c:if test="${card.likeCount ne 0}">
+						좋아요 ${card.likeCount}개
 					</c:if>
 				</div>
 				
 				<%-- 글 --%>
 				<div class="card-post m-3">
-					<span class="font-weight-bold">${card.user.loginId}</span>
 					<span>${card.post.content}</span>
 				</div>
 				
@@ -261,12 +261,13 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		let postId = $(this).data("post-id");
-		
+		//alert(postId);
+	
 		$.ajax({
-			// request
+			//request
 			url: "/like/" + postId
 			
-			// response
+			//response
 			, success:function(data) {
 				if (data.code == 200) {
 					location.reload(true); // 새로고침 => timeline 다시 가져옴 -> 하트 채워지거나 or 비워지거나
@@ -279,10 +280,12 @@ $(document).ready(function() {
 			, error:function(request, status, error) {
 				alert("좋아요 하는데 실패했습니다.");
 			}
-		}); // -- 좋아요 끝
+		});
+		
+	}); // -- 좋아요 끝
 		
 		
-	});
-});
+	
+}); //-- 전체 끝
 
 </script>

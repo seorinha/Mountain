@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.comment.bo.CommentBO;
 import com.project.comment.domain.CommentView;
 import com.project.diary.domain.CardView;
+import com.project.like.bo.LikeBO;
 import com.project.post.bo.PostBO;
 import com.project.post.entity.PostEntity;
 import com.project.user.bo.UserBO;
@@ -25,6 +26,9 @@ public class DiaryBO {
 	
 	@Autowired
 	private CommentBO commentBO;
+	
+	@Autowired
+	private LikeBO likeBO;
 	
 	//다이어리 카드 구성
 	//input : userId(비로그인/로그인 허용 null도 허용)
@@ -53,8 +57,13 @@ public class DiaryBO {
 			cardView.setCommentList(commentList);
 			
 			//좋아요 갯수
+			int likeCount = likeBO.getLikeCountByPostId(post.getId());
+			cardView.setLikeCount(likeCount);
 			
 			//내가 좋아요 눌렀는지
+			boolean filledLike = likeBO.filledLike(post.getId(), userId);
+			cardView.setFilledLike(filledLike);
+			
 			
 			cardViewList.add(cardView);
 		}

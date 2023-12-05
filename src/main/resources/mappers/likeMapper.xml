@@ -3,6 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.project.like.mapper.LikeMapper">
+ 	<!--  
  	<select id="selectLikeCountByPostIdUserId" parameterType="map" resultType="int">
  		SELECT
  			COUNT(*)
@@ -12,16 +13,31 @@
  			`postId` = #{postId}
  			AND `userId` = #{userId}
  	</select>
- 	<delete id="deleteLikeByPostIdUserId" parameterType="map">
- 		DELETE
-		FROM
-			`like`
-		WHERE
-			`postId` = #{postId}
-			AND `userId` = #{userId}
- 	</delete>
+ 	
+ 	<select id="selectLikeCountByPostId" parameterType="int" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 	</select>
+ 	-->
+ 	
+ 	<!-- likecount하나로 합치기 -->
+ 	<select id="selectLikeCountByPostIdOrUserId" parameterType="map" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 			<if test="userId != null">
+ 			AND `userId` = #{userId}
+ 			</if>
+ 	</select>
  	<insert id="insertLike" parameterType="map">
- 		INSERT INTO 
+ 		INSERT INTO `like`
  		(
  			`postId`
  			, `userId`
@@ -35,4 +51,12 @@
  		)
  	</insert>
  	
+ 	<delete id="deleteLikeByPostIdUserId" parameterType="map">
+ 		DELETE
+		FROM
+			`like`
+		WHERE
+			`postId` = #{postId}
+			AND `userId` = #{userId}
+ 	</delete>
  </mapper>
