@@ -40,3 +40,9 @@ footer {
 #writeTextArea {height:100px;}
 
 #comment-text {width:500px;}
+
+.bookmark-box {
+	border-color:darkseagreen;
+	border-width: 3px;
+	border-style: solid;
+}
