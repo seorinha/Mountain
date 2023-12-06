@@ -21,7 +21,5 @@ public class Mountain {
 	private Date createdAt;
 	private Date updatedAt;
 	
-	public int getId() {
-        return id;
-    }
+	private boolean filledBookmark;
 }

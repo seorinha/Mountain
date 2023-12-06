@@ -12,17 +12,24 @@
 	<%--산 정보 박스 --%>
 	<div class="mountain-review-box">
 		<h3 class="font-weight-bold">${mountain.mtName}</h3>
-		<div class="d-flex">
+		<div class="d-flex justify-content-between">
 			<h6>${mountain.mtLocation}</h6>
-			<%--빈 별: 1. 비로그인일 때, 2. 로그인 상태에서 별 누르지않았을 때 --%>
-			<a href="#" id="emptyStar" class="bookmark-btn">
-				<img src="https://www.iconninja.com/files/961/8/966/star-icon.png" width="18" height="18" alt="empty star">
-			</a>
 			
-			<%--빨간 별: 로그인상태 이면서 즐겨찾기 눌렀을 때 --%>
-			<a href="#" id="redStar" class="bookmark-btn">
-				<img src="https://www.iconninja.com/files/955/938/464/star-icon.png" width="18" height="18" alt="red star">
-			</a>
+			<div class="mr-4 mb-3">
+				<%--빈 별: 1. 비로그인일 때, 2. 로그인 상태에서 별 누르지않았을 때--%>
+				<c:if test="${mountain.filledBookmark == false}">
+					<a href="#" id="emptyStar" class="bookmark-btn" data-mountain-id="${mtId}">
+						<img src="https://cdn4.iconfinder.com/data/icons/basic-ui-2-line/32/star-bookmark-favorite-rating-rate-256.png" width="25" height="25" alt="unfilledStar">
+					</a>
+				</c:if>
+					
+				<%---빨간 별: 로그인상태 이면서 즐겨찾기 눌렀을 때 --%>
+				<c:if test="${mountain.filledBookmark == true}">
+					<a href="#" id="redStar" class="bookmark-btn" data-mountain-id="${mtId}">
+						<img src="https://www.iconninja.com/files/955/938/464/star-icon.png" width="18" height="18" alt="filledStar">						</a>
+					</a>
+				</c:if>
+			</div>
 		</div>
 		
 		<%--지도api --%>
@@ -105,3 +112,18 @@
 				<%--paging --%>
 	</div>
 </div>
+
+<script>
+$(document).ready(function() {
+	//북마크 누르기, 해제
+	$('.bookmark-btn').on('click', function(e) {
+		e.preventDefault();
+		
+		let mtId = $(this).data('mountain-id');
+		alert(mtId);
+		
+		
+	});
+});
+</script>
+
