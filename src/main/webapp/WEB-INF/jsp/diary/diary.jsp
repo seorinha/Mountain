@@ -37,9 +37,9 @@
 						
 						<%--더보기(내가 쓴 글일 때만 노출, 삭제 또는 수정) --%>
 						<c:if test="${userId eq card.user.id}" >
-						<a href="#" class="more-btn" data-toggle="modal" data-target="#modal" data-post-id="${card.post.id}">
-							<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
-						</a>
+							<a href="#" class="more-btn" data-toggle="modal" data-target="#modal" data-post-id="${card.post.id}">
+								<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
+							</a>
 						</c:if>
 					</div>
 					<%--날짜 --%>
@@ -301,7 +301,42 @@ $(document).ready(function() {
 		
 	}); // -- 좋아요 끝
 		
+	//글 삭제 -> 모달에 postId 부여
+	$('.more-btn').on('click', function(e) {
+		e.preventDefault();
 		
+		let postId = $(this).data("post-id");
+		//alert(postId);
+		
+		//data-post-id를 심기
+		$("#modal").data("post-id", postId);
+	});
+	
+	//모달 안에있는 삭제하기 눌렀을 때
+	$("#modal #deletePostLink").on("click", function(e) {
+		e.preventDefault();
+		
+		let postId = $("#modal").data("post-id"); 
+		//alert(postId);
+		
+		//글삭제 요청 
+		$.ajax({
+			type:"delete"
+			, url:"/post/delete"
+			, data: {"postId":postId}
+		
+			, success: function(data) {
+				if (data.code == 200) {
+					location.reload(true);
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error: function(e) {
+				alert("일지를 삭제하는데 실패했습니다.");
+			}
+		}); //-- ajax끝
+	}); // --글삭제 끝
 	
 }); //-- 전체 끝
 

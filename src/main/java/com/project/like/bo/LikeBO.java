@@ -49,7 +49,11 @@ public class LikeBO {
 		}
 		
 	
-	//좋아요 삭제
-	
+	//글 삭제 시 좋아요 삭제
+	//input:postId
+	//output:x
+	public void deleteLikeByPostId(int postId) {
+		likeMapper.deleteLikeByPostId(postId);
+	}
 	
 }
