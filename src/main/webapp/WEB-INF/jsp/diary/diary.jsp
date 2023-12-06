@@ -37,7 +37,7 @@
 						
 						<%--더보기(내가 쓴 글일 때만 노출, 삭제 또는 수정) --%>
 						<c:if test="${userId eq card.user.id}" >
-						<a href="#" class="more-btn">
+						<a href="#" class="more-btn" data-toggle="modal" data-target="#modal" data-post-id="${card.post.id}">
 							<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
 						</a>
 						</c:if>
@@ -115,6 +115,23 @@
 		</div><%-- diary-box --%>
 	</div>
 </div>
+
+
+<!-- Modal 창 -->
+<div class="modal fade" id="modal">
+	<%-- modal-sm:작은 모달, modal-dialog-centered:수직 기준 가운데 --%>
+	<div class="modal-dialog modal-dialog-centered modal-sm">
+		<div class="modal-content text-center">
+      		<div class="py-3 border-bottom">
+      			<a href="#" id="deletePostLink">삭제하기</a>
+      		</div>
+      		<div class="py-3">
+      			<a href="#" data-dismiss="modal">취소하기</a>
+      		</div>
+		</div>
+	</div>
+</div>
+
 
 <script>
 $(document).ready(function() {
