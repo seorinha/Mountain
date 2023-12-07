@@ -1,12 +1,13 @@
-package com.project.bookmark.mapper;
+package com.project.bookmark.repository;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.project.bookmark.domain.Bookmark;
+import com.project.bookmark.entity.BookmarkEntity;
 
 @Repository
-public interface BookmarkMapper {
+public interface BookmarkRepository extends JpaRepository<BookmarkEntity, Integer> {
 
 	
 	//북마크 누르기, 해제하기
@@ -24,6 +25,6 @@ public interface BookmarkMapper {
 			@Param("userId") int userId);
 	
 	//mountain에 bookmark
-	public Bookmark selectBookmarkByMtId(int id);
+	public BookmarkEntity selectBookmarkByMtId(int id);
 	
 }

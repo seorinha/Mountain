@@ -1,11 +1,11 @@
-package com.project.bookmark.domain;
+package com.project.bookmark.entity;
 
 import java.util.Date;
 
 import lombok.Data;
 
 @Data
-public class Bookmark {
+public class BookmarkEntity {
 
 	private int id;
 	private int mtId;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.bookmark.bo.BookmarkBO;
-import com.project.bookmark.domain.Bookmark;
+import com.project.bookmark.entity.BookmarkEntity;
 import com.project.mountain.bo.MountainBO;
 import com.project.mountain.domain.Mountain;
 import com.project.review.bo.ReviewBO;
@@ -50,7 +50,7 @@ public class MountainController {
 		}
 		
 		Mountain mountain = mountainBO.getMountainById(mtId);
-		Bookmark bookmark = bookmarkBO.getBookmarkByMtId(mtId);
+		BookmarkEntity bookmark = bookmarkBO.getBookmarkByMtId(mtId);
 		List<Review> reviewList = reviewBO.getReviewListByMtId(mtId);
 		
 		

@@ -3,14 +3,14 @@ package com.project.bookmark.bo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.bookmark.domain.Bookmark;
-import com.project.bookmark.mapper.BookmarkMapper;
+import com.project.bookmark.entity.BookmarkEntity;
+import com.project.bookmark.repository.BookmarkRepository;
 
 @Service
 public class BookmarkBO {
 
 	@Autowired
-	private BookmarkMapper bookmarkMapper;
+	private BookmarkRepository bookmarkMapper;
 	
 	//즐겨찾기 누르기, 해제하기
 	//input:mtId, userId
@@ -38,7 +38,7 @@ public class BookmarkBO {
 	}
 	
 	//mountain에 bookmark
-	public Bookmark getBookmarkByMtId(int id) {
+	public BookmarkEntity getBookmarkByMtId(int id) {
 		return bookmarkMapper.selectBookmarkByMtId(id);
 	}
 }

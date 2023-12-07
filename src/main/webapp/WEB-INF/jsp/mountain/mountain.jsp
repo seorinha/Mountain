@@ -122,8 +122,28 @@ $(document).ready(function() {
 		let mtId = $(this).data('mountain-id');
 		alert(mtId);
 		
+		$.ajax({
+			//request
+			url: "/bookmark/" + mtId
+			
+			//response
+			, success:function(data) {
+				if (data.code == 200) {
+					location.reload(true); // 새로고침 
+				} else if (data.code == 500) {
+					// 비로그인 상태
+					alert(data.errorMessage);
+					location.href = "/user/sign-in-view"; // 로그인 페이지로 이동
+				}
+			}
+			, error:function(request, status, error) {
+				alert("즐겨찾기 하는데 실패했습니다.");
+			}
+		});
+		
 		
 	});
 });
+
 </script>
 
