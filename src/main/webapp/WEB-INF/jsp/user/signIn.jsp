@@ -31,12 +31,46 @@
 		</form>
 	</div>
 	
+	<%--카카오 로그인 버튼 --%>
+	<div class="d-flex justify-content-center mt-4">
+		<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+			<img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" height="45" width="auto" alt="카카오 로그인 버튼">
+		</a>
+	</div>
+	
+	
 	<div class="text-center mt-3">
 		<a href="/user/sign-up-view">회원가입하기</a>
 	</div>
 </div>
 
+<%--카카오 로그인 --%>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js"
+  integrity="sha384-kYPsUbBPlktXsY6/oNHSUDZoTX6+YI51f63jCPEIPFP09ttByAdxd2mEjKuhdqn4" crossorigin="anonymous">
+ </script>
+ 
 <script>
+//166cb8c90554b8d95c8841917a09a6fb
+Kakao.init("166cb8c90554b8d95c8841917a09a6fb");
+Kakao.isInitialized();
+</script>
+
+<script>
+//카카오 로그인 코드 확인
+function loginWithKakao() {
+    Kakao.Auth.authorize({
+      redirectUri: 'http://localhost:8080/home/home-list-view',
+    });
+  } //--카카오 로그인 코드 확인
+  
+ //엑세스 토큰 발급, 사용자 정보 받아오기
+  
+  
+ //로그아웃 기능 - 엑세스 토큰 만료 시키기
+  
+  
+  
+  
 $(document).ready(function() {
 	//로그인
 	$('#loginForm').on('submit', function(e) {
