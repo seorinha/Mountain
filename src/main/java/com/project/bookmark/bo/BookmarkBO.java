@@ -54,10 +54,12 @@ public class BookmarkBO {
 				
 	}
 	
-	
-	
 	//mountain에 bookmark
 	public Bookmark getBookmarkByMtIdUserId(int mtId, int userId) {
 		return bookmarkMapper.selectBookmarkByMtIdUserId(mtId, userId);
+	}
+	
+	public List<Bookmark> getBookmarkList(int mtId) {
+		return bookmarkMapper.selectBookmarkList(mtId);
 	}
 }

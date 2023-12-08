@@ -1,9 +1,12 @@
 package com.project.bookmark.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.project.bookmark.domain.Bookmark;
+import com.project.mountain.domain.Mountain;
 
 @Repository
 public interface BookmarkMapper {
@@ -22,11 +25,11 @@ public interface BookmarkMapper {
 			@Param("mtId") int mtId,
 			@Param("userId") int userId);
 	
-	
-	
 	//mountain의 bookmark
-	public Bookmark selectBookmarkByMtIdUserId(int mtId, int userId);
+	public Bookmark selectBookmarkByMtIdUserId(
+			@Param("mtId") int mtId,
+			@Param("userId") int userId);
 	
-	
+	public List<Bookmark> selectBookmarkList(int mtId);
 	
 }

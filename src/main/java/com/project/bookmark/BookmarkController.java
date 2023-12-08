@@ -1,5 +1,7 @@
 package com.project.bookmark;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.mountain.bo.MountainBO;
-import com.project.mountain.domain.Mountain;
+import com.project.bookmark.bo.BookmarkBO;
+import com.project.bookmark.domain.Bookmark;
 
 @Controller
 public class BookmarkController {
 
+	@Autowired
+	private BookmarkBO bookmarkBO;
+	
 	@GetMapping("/bookmark/bookmark-view")
 	public String bookmarkView(
 			@RequestParam("mtId") int mtId,
@@ -26,6 +31,10 @@ public class BookmarkController {
 			// 비로그인이면 로그인 화면으로 이동
 			return "redirect:/user/sign-in-view";
 		}
+		
+		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkList(mtId);
+		
+		model.addAttribute("bookmarkList", bookmarkList);
 		
 		model.addAttribute("mtId", mtId);
 		model.addAttribute("viewName", "bookmark/bookmark");
