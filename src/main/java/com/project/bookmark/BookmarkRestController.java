@@ -6,21 +6,24 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.bookmark.bo.BookmarkBO;
 
+@RequestMapping("/bookmark")
 @RestController
 public class BookmarkRestController {
 
 	@Autowired
 	private BookmarkBO bookmarkBO;
 	
-	@GetMapping("/bookmark/{mtId}")
-	public Map<String, Object> bookmarkToggle(
-			@PathVariable int mtId,
+	@PostMapping("/bookmarkDo")
+	public Map<String, Object> bookmarkDo(
+			@RequestParam("mtId") int mtId,
 			HttpSession session) {
 		
 		Map<String, Object> result = new HashMap<>();
@@ -34,7 +37,7 @@ public class BookmarkRestController {
 			return result;
 		}
 		
-		bookmarkBO.bookmarkToggle(mtId, userId);
+		bookmarkBO.addBookmark(mtId, userId);
 		
 		//응답값
 		result.put("code", 200);

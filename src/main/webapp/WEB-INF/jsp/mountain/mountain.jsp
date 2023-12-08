@@ -33,9 +33,7 @@
 		</div>
 		
 		<%--지도api --%>
-		<div class="map-box border">
-		
-		</div>
+		<div id="map" class="map-box border"></div>
 		
 		<%--산 관련 설명들 --%>
 		<table class="mount-info-table table table-bordered">
@@ -113,10 +111,32 @@
 	</div>
 </div>
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=166cb8c90554b8d95c8841917a09a6fb"></script>
+<script>
+	var container = document.getElementById('map');
+	var options = {
+		center: new kakao.maps.LatLng(33.450701, 126.570667),
+		level: 3
+	};
+
+	var map = new kakao.maps.Map(container, options);
+	
+	// 마커가 표시될 위치
+	var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+	// 마커를 생성
+	var marker = new kakao.maps.Marker({
+	    position: markerPosition
+	});
+
+	// 마커가 지도 위에 표시되도록 설정
+	marker.setMap(map);
+</script>
+
 <script>
 $(document).ready(function() {
 	//북마크 누르기, 해제
-	$('.bookmark-btn').on('click', function(e) {
+	$('#emptyStar').on('click', function(e) {
 		e.preventDefault();
 		
 		let mtId = $(this).data('mountain-id');
@@ -124,11 +144,14 @@ $(document).ready(function() {
 		
 		$.ajax({
 			//request
-			url: "/bookmark/" + mtId
+			type:"post"
+			, url:"/bookmark/bookmarkDo"
+			, data:{"mtId":mtId}
 			
 			//response
 			, success:function(data) {
 				if (data.code == 200) {
+					alert("즐겨찾기가 저장되었습니다.");
 					location.reload(true); // 새로고침 
 				} else if (data.code == 500) {
 					// 비로그인 상태
@@ -139,6 +162,7 @@ $(document).ready(function() {
 			, error:function(request, status, error) {
 				alert("즐겨찾기 하는데 실패했습니다.");
 			}
+			
 		});
 		
 		
