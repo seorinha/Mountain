@@ -14,16 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.bookmark.bo.BookmarkBO;
 
-@RequestMapping("/bookmark")
 @RestController
 public class BookmarkRestController {
 
 	@Autowired
 	private BookmarkBO bookmarkBO;
 	
-	@PostMapping("/bookmarkDo")
-	public Map<String, Object> bookmarkDo(
-			@RequestParam("mtId") int mtId,
+	@RequestMapping("/bookmark/{mtId}")
+	public Map<String, Object> bookmarkToggle(
+			@PathVariable int mtId,
 			HttpSession session) {
 		
 		Map<String, Object> result = new HashMap<>();
@@ -37,7 +36,7 @@ public class BookmarkRestController {
 			return result;
 		}
 		
-		bookmarkBO.addBookmark(mtId, userId);
+		bookmarkBO.bookmarkToggle(mtId, userId);
 		
 		//응답값
 		result.put("code", 200);

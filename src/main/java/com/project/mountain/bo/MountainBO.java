@@ -25,4 +25,7 @@ public class MountainBO {
 		return mountainMapper.selectMountainList();
 	}
 	
+	
+	
+	
 }

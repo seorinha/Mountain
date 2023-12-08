@@ -13,4 +13,6 @@ public class Bookmark {
 	private int userId;
 	private Date createdAt;
 	private Date updatedAt;
+	
+	
 }

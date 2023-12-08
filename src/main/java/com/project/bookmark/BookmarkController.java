@@ -14,9 +14,6 @@ import com.project.mountain.domain.Mountain;
 @Controller
 public class BookmarkController {
 
-	@Autowired
-	private MountainBO mountainBO;
-	
 	@GetMapping("/bookmark/bookmark-view")
 	public String bookmarkView(
 			@RequestParam("mtId") int mtId,

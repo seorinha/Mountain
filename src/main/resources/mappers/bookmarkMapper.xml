@@ -3,23 +3,41 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.project.bookmark.mapper.BookmarkMapper">
- 	<insert id="insertBookmark" parameterType="map">
+ <select id="selectBookmarkCountByMtIdOrUserId" parameterType="map" resultType="int">
+ 	SELECT
+ 		COUNT(*)
+ 	FROM
+ 		`bookmark`
+ 	WHERE
+ 		`mtId` = #{mtId}
+ 		<if test="userId != null">
+ 		AND `userId` = #{userId}
+ 		</if>
+ </select>
+ <insert id="insertBookmark" parameterType="map">
  	INSERT INTO `bookmark`
  	(
  		`mtId`
-		, `userId`
-		, `createdAt`
-		, `updatedAt`
+ 		, `userId`
+ 		, `createdAt`
  	)
  	VALUES
  	(
  		#{mtId}
  		, #{userId}
  		, NOW()
- 		, NOW()
  	)
  </insert>
- <select id="selectBookmarkByMtId" resultType="com.project.bookmark.domain.Bookmark">
+ 	
+ <delete id="deleteBookmarkByMtIdUserId" parameterType="map">
+ 	DELETE
+	FROM
+		`bookmark`
+	WHERE
+		`mtId` = #{mtId}
+		AND `userId` = #{userId}
+ </delete>	
+ <select id="selectBookmarkByMtIdUserId" resultType="com.project.bookmark.domain.Bookmark">
  	SELECT
 		`id`
 		, `mtId`
@@ -30,5 +48,7 @@
 		`bookmark`
 	WHERE
 		`mtId` = #{mtId}
+		AND `userId` = #{userId}
  </select>
+ 
  </mapper>
