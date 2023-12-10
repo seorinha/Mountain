@@ -15,4 +15,5 @@ public interface MountainMapper {
 	//home
 	public List<Mountain> selectMountainList();
 	
+	
 }

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.bookmark.bo.BookmarkBO;
 import com.project.bookmark.domain.Bookmark;
+import com.project.mountain.bo.MountainBO;
+import com.project.mountain.domain.Mountain;
+import com.project.review.domain.Review;
 
 @Controller
 public class BookmarkController {
@@ -19,9 +22,13 @@ public class BookmarkController {
 	@Autowired
 	private BookmarkBO bookmarkBO;
 	
+	@Autowired
+	private MountainBO mountainBO;
+	
 	@GetMapping("/bookmark/bookmark-view")
 	public String bookmarkView(
-			@RequestParam("mtId") int mtId,
+			@RequestParam("mtId") int mtId, 
+			@RequestParam("bookmarkId") int bookmarkId, 
 			Model model,
 			HttpSession session) {
 		
@@ -32,11 +39,14 @@ public class BookmarkController {
 			return "redirect:/user/sign-in-view";
 		}
 		
-		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkList(mtId);
-		
-		model.addAttribute("bookmarkList", bookmarkList);
+	
+		Mountain mountain = mountainBO.getMountainById(mtId);
+		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkList(bookmarkId, userId);
 		
 		model.addAttribute("mtId", mtId);
+		model.addAttribute("bookmarkId", bookmarkId);
+		model.addAttribute("mountain", mountain);
+		model.addAttribute("bookmarkList", bookmarkList);		
 		model.addAttribute("viewName", "bookmark/bookmark");
 		return "template/layout";
 	}

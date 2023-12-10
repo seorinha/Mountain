@@ -60,6 +60,8 @@
 	FROM
 		`bookmark`
 	WHERE
-		`mtId` = #{mtId}	
+		`id` = #{bookmarkId}
+		AND `userId` = #{userId}
+		
  </select>
  </mapper>

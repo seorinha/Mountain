@@ -11,14 +11,16 @@
 	</div>
 	
 	<%--즐겨찾기 산 목록 영역 --%> 
-	
-	<div class="bookmark-box rounded">
-		<div class="p-3">
-			<a href="/mountain/mountain-review-view?mtId=${mtId}">
-				<h3 class="font-weight-bold">${mountain.mtName}</h3>
+	<c:forEach items="${bookmarkList}" var="bookmark"> 
+	<div class="mount-box rounded mb-2">
+		<div class="d-flex align-items-center justify-content-between">
+			<a href="/mountain/mountain-review-view?mtId=${mountain.id}">
+				<div class="p-3">
+					<h3 class="font-weight-bold">${mountain.mtName}</h3>
+					<h6>${mountain.mtLocation}</h6>
+				</div>
 			</a>
-			<h6>${mountain.mtLocation}</h6>
-			<div class="d-flex justify-content-end align-items-center mr-3">
+			<div class="mr-4">
 				<%--빈 별: 1. 비로그인일 때, 2. 로그인 상태에서 별 누르지않았을 때--%>
 				<c:if test="${bookmark eq null}">
 					<a href="#" id="emptyStar" class="bookmark-btn" data-mountain-id="${mtId}">
@@ -35,7 +37,7 @@
 			</div>
 		</div>
 	</div>
-	
+	</c:forEach>
 	
 </div>
 <script>
@@ -65,7 +67,7 @@ $(document).ready(function() {
 				}
 			}
 			, error:function(request, status, error) {
-				alert("즐겨찾기 하는데 실패했습니다.");
+				alert("즐겨찾기를 해제 하는데 실패했습니다.");
 			}
 			
 		});
