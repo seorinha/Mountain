@@ -53,7 +53,6 @@ public class MountainController {
 		Bookmark bookmark = bookmarkBO.getBookmarkByMtIdUserId(mtId, userId);
 		List<Review> reviewList = reviewBO.getReviewListByMtId(mtId);
 		
-		
 		model.addAttribute("mtId", mtId);
 		model.addAttribute("bookmark", bookmark);
 		model.addAttribute("mountain", mountain);

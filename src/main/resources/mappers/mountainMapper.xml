@@ -28,4 +28,10 @@
 	FROM
 		`mountain`
  </select>
+ <select id="selectMountain" resultType="com.project.mountain.domain.Mountain">
+ 	SELECT
+		*
+	FROM
+		`mountain`
+ </select>
  </mapper>

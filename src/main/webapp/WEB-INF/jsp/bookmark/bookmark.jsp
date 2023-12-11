@@ -47,7 +47,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		let mtId = $(this).data('mountain-id');
-		//alert(mtId);
+		alert(mtId);
 		
 		$.ajax({
 			//request
@@ -67,7 +67,7 @@ $(document).ready(function() {
 				}
 			}
 			, error:function(request, status, error) {
-				alert("즐겨찾기를 해제 하는데 실패했습니다.");
+				//alert("즐겨찾기를 해제 하는데 실패했습니다.");
 			}
 			
 		});

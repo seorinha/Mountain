@@ -30,6 +30,7 @@ public interface BookmarkMapper {
 			@Param("mtId") int mtId,
 			@Param("userId") int userId);
 	
-	public List<Bookmark> selectBookmarkList();
+	//즐겨찾기 목록 뿌리기
+	public List<Bookmark> selectBookmarkListByUserId(int userId);
 	
 }

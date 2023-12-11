@@ -50,10 +50,16 @@
 		`mtId` = #{mtId}
 		AND `userId` = #{userId}
  </select>
- <select id="selectBookmarkList" resultType="com.project.bookmark.domain.Bookmark">
+ <select id="selectBookmarkListByUserId" resultType="com.project.bookmark.domain.Bookmark">
  	SELECT
-		*
+		`id`
+		, `mtId`
+		, `userId`
+		, `createdAt`
+		, `updatedAt`
 	FROM
 		`bookmark`
+	WHERE
+		`userId` = #{userId}
  </select>
  </mapper>

@@ -59,7 +59,8 @@ public class BookmarkBO {
 		return bookmarkMapper.selectBookmarkByMtIdUserId(mtId, userId);
 	}
 	
-	public List<Bookmark> getBookmarkList() {
-		return bookmarkMapper.selectBookmarkList();
+	//즐겨찾기에 목록 
+	public List<Bookmark> getBookmarkListByUserId(int userId) {
+		return bookmarkMapper.selectBookmarkListByUserId(userId);
 	}
 }

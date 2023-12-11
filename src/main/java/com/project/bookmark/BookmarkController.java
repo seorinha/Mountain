@@ -22,6 +22,9 @@ public class BookmarkController {
 	@Autowired
 	private BookmarkBO bookmarkBO;
 	
+	@Autowired
+	private MountainBO mountainBO;
+	
 	@GetMapping("/bookmark/bookmark-view")
 	public String bookmarkView(
 			Model model,
@@ -34,10 +37,10 @@ public class BookmarkController {
 			return "redirect:/user/sign-in-view";
 		}
 		
-	
-		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkList();
+		Mountain mountain = mountainBO.getMountain();
+		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkListByUserId(userId);
 		
-		
+		model.addAttribute("mountain", mountain);		
 		model.addAttribute("bookmarkList", bookmarkList);		
 		model.addAttribute("viewName", "bookmark/bookmark");
 		return "template/layout";
