@@ -30,8 +30,6 @@ public interface BookmarkMapper {
 			@Param("mtId") int mtId,
 			@Param("userId") int userId);
 	
-	public List<Bookmark> selectBookmarkList(
-			@Param("bookmarkId") int bookmarkId,
-			@Param("userId") int userId);
+	public List<Bookmark> selectBookmarkList();
 	
 }

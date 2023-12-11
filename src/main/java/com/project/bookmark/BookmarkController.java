@@ -22,13 +22,8 @@ public class BookmarkController {
 	@Autowired
 	private BookmarkBO bookmarkBO;
 	
-	@Autowired
-	private MountainBO mountainBO;
-	
 	@GetMapping("/bookmark/bookmark-view")
 	public String bookmarkView(
-			@RequestParam("mtId") int mtId, 
-			@RequestParam("bookmarkId") int bookmarkId, 
 			Model model,
 			HttpSession session) {
 		
@@ -40,12 +35,9 @@ public class BookmarkController {
 		}
 		
 	
-		Mountain mountain = mountainBO.getMountainById(mtId);
-		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkList(bookmarkId, userId);
+		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkList();
 		
-		model.addAttribute("mtId", mtId);
-		model.addAttribute("bookmarkId", bookmarkId);
-		model.addAttribute("mountain", mountain);
+		
 		model.addAttribute("bookmarkList", bookmarkList);		
 		model.addAttribute("viewName", "bookmark/bookmark");
 		return "template/layout";

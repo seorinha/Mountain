@@ -10,7 +10,7 @@
 		<hr>
 	</div>
 	
-	<%--즐겨찾기 산 목록 영역 --%> 
+	<%--즐겨찾기 목록 영역 --%> 
 	<c:forEach items="${bookmarkList}" var="bookmark"> 
 	<div class="mount-box rounded mb-2">
 		<div class="d-flex align-items-center justify-content-between">

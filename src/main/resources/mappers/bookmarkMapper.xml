@@ -52,16 +52,8 @@
  </select>
  <select id="selectBookmarkList" resultType="com.project.bookmark.domain.Bookmark">
  	SELECT
-		`id`
-		, `mtId`
-		, `userId`
-		, `createdAt`
-		, `updatedAt`
+		*
 	FROM
 		`bookmark`
-	WHERE
-		`id` = #{bookmarkId}
-		AND `userId` = #{userId}
-		
  </select>
  </mapper>
