@@ -50,4 +50,6 @@ public class UserController {
 		//로그인 화면으로 이동
 		return "redirect:/user/sign-in-view";
 	}
+	
+	
 }
