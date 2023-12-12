@@ -17,7 +17,7 @@
 					<a href="/diary/diary-view" class="nav-link text-white">등산일지</a>
 				</li>
 				<li class="nav-item">
-					<a href="/bookmark/bookmark-view" class="nav-link text-white">즐겨찾기</a>
+					<a href="/bookmark/bookmark-list-view" class="nav-link text-white">즐겨찾기</a>
 				</li>
 			</ul>
 		</nav>

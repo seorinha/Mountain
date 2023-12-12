@@ -23,14 +23,14 @@
 			<div class="mr-4">
 				<%--빈 별: 1. 비로그인일 때, 2. 로그인 상태에서 별 누르지않았을 때--%>
 				<c:if test="${bookmark eq null}">
-					<a href="#" id="emptyStar" class="bookmark-btn" data-mountain-id="${mtId}">
+					<a href="#" id="emptyStar" class="bookmark-btn" data-mountain-id="${bookmark.mtId}">
 						<img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/star-512.png" width="30" height="30" alt="unfilledStar">
 					</a>
 				</c:if>
 					
 				<%---빨간 별: 로그인상태 이면서 즐겨찾기 눌렀을 때 --%>
 				<c:if test="${bookmark ne null}">
-					<a href="#" id="redStar" class="bookmark-btn" data-mountain-id="${mtId}">
+					<a href="#" id="redStar" class="bookmark-btn" data-mountain-id="${bookmark.mtId}">
 						<img src="https://cdn0.iconfinder.com/data/icons/new-year-holidays-set/200/NewYearIcon7-01-512.png" width="30" height="30" alt="filledStar">						</a>
 					</a>
 				</c:if>
@@ -47,7 +47,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		let mtId = $(this).data('mountain-id');
-		alert(mtId);
+		//alert(mtId);
 		
 		$.ajax({
 			//request
@@ -67,7 +67,7 @@ $(document).ready(function() {
 				}
 			}
 			, error:function(request, status, error) {
-				//alert("즐겨찾기를 해제 하는데 실패했습니다.");
+				alert("즐겨찾기를 해제 하는데 실패했습니다.");
 			}
 			
 		});
