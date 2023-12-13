@@ -63,4 +63,9 @@ public class BookmarkBO {
 	public List<Bookmark> getBookmarkListByUserId(int userId) {
 		return bookmarkMapper.selectBookmarkListByUserId(userId);
 	}
+	
+	//
+	public Bookmark getBookmarkByMtId(int mtId) {
+		return bookmarkMapper.selectBookmarkByMtId(mtId);
+	}
 }

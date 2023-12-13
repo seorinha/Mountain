@@ -8,14 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.bookmark.bo.BookmarkBO;
 import com.project.bookmark.domain.Bookmark;
 import com.project.mountain.bo.MountainBO;
 import com.project.mountain.domain.Mountain;
-import com.project.review.domain.Review;
 
+@RequestMapping("/bookmark")
 @Controller
 public class BookmarkController {
 
@@ -25,7 +26,11 @@ public class BookmarkController {
 	@Autowired
 	private MountainBO mountainBO;
 	
+<<<<<<< HEAD
 	@GetMapping("/bookmark/bookmark-list-view")
+=======
+	@GetMapping("/bookmark-view")
+>>>>>>> e645002 (Mountain #18 즐겨찾기 구현 (즐겨찾기 해제하기))
 	public String bookmarkView(
 			Model model,
 			HttpSession session) {
@@ -37,9 +42,11 @@ public class BookmarkController {
 			return "redirect:/user/sign-in-view";
 		}
 		
+		
 		Mountain mountain = mountainBO.getMountain();
 		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkListByUserId(userId);
 		
+	
 		model.addAttribute("mountain", mountain);		
 		model.addAttribute("bookmarkList", bookmarkList);		
 		model.addAttribute("viewName", "bookmark/bookmark");

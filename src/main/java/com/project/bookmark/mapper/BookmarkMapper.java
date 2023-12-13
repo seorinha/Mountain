@@ -33,4 +33,5 @@ public interface BookmarkMapper {
 	//즐겨찾기 목록 뿌리기
 	public List<Bookmark> selectBookmarkListByUserId(int userId);
 	
+	public Bookmark selectBookmarkByMtId(int mtId);
 }
