@@ -26,11 +26,7 @@ public class BookmarkController {
 	@Autowired
 	private MountainBO mountainBO;
 	
-<<<<<<< HEAD
 	@GetMapping("/bookmark/bookmark-list-view")
-=======
-	@GetMapping("/bookmark-view")
->>>>>>> e645002 (Mountain #18 즐겨찾기 구현 (즐겨찾기 해제하기))
 	public String bookmarkView(
 			Model model,
 			HttpSession session) {
