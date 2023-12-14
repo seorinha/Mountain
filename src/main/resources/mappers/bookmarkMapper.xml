@@ -62,16 +62,4 @@
 	WHERE
 		`userId` = #{userId}
  </select>
- <select id="selectBookmarkByMtId" resultType="com.project.bookmark.domain.Bookmark">
- 	SELECT
-		`id`
-		, `mtId`
-		, `userId`
-		, `createdAt`
-		, `updatedAt`
-	FROM
-		`bookmark`
-	WHERE
-		`mtId` = #{mtId}
- </select>
  </mapper>

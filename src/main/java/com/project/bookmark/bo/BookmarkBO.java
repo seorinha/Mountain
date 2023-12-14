@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.project.bookmark.domain.Bookmark;
 import com.project.bookmark.mapper.BookmarkMapper;
-import com.project.mountain.domain.Mountain;
-import com.project.user.entity.UserEntity;
 
 @Service
 public class BookmarkBO {
@@ -59,13 +57,10 @@ public class BookmarkBO {
 		return bookmarkMapper.selectBookmarkByMtIdUserId(mtId, userId);
 	}
 	
-	//즐겨찾기에 목록 
+	//즐겨찾기에 목록 뿌리기
 	public List<Bookmark> getBookmarkListByUserId(int userId) {
 		return bookmarkMapper.selectBookmarkListByUserId(userId);
 	}
 	
-	//
-	public Bookmark getBookmarkByMtId(int mtId) {
-		return bookmarkMapper.selectBookmarkByMtId(mtId);
-	}
+	
 }
