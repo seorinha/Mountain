@@ -26,7 +26,7 @@ public class BookmarkController {
 	private MountainBO mountainBO;
 	
 	@GetMapping("/bookmark-list-view")
-	public String bookmarkView(
+	public String bookmarkListView(
 			Model model,
 			HttpSession session) {
 		
