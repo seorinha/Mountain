@@ -113,7 +113,7 @@
 			, success:function(data) {
 				if (data.code == 200) {
 					alert("후기가 삭제되었습니다");
-					location.href = "/home/home-list-view";
+					location.href = "/mountain/mountain-review-view?mtId=${review.mtId}";
 				} else {
 					alert(data.errorMessage);
 				}					
