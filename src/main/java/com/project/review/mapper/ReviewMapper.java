@@ -37,4 +37,7 @@ public interface ReviewMapper {
 	public void deleteReviewByReviewIdUserId(
 			@Param("reviewId") int reviewId,
     		@Param("userId") int userId);
+	
+	//조회수
+	public void updateReviewView(int id);
 }

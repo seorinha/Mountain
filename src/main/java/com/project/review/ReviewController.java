@@ -42,6 +42,7 @@ public class ReviewController {
 	 */
 	@GetMapping("/review-detail-view")
 	public String reviewDetailView(
+			@RequestParam ("id") int id,
 			@RequestParam ("reviewId") int reviewId,
 			HttpSession session,
 			Model model) {
@@ -49,7 +50,9 @@ public class ReviewController {
 		int userId = (int)session.getAttribute("userId");
 		
 		Review review = reviewBO.getReviewByReviewIdUserId(reviewId, userId);
+		reviewBO.updateReviewView(id);
 		
+		model.addAttribute("id", id);
 		model.addAttribute("review", review);
 		model.addAttribute("reviewId", reviewId);
 		model.addAttribute("viewName", "review/reviewDetail");

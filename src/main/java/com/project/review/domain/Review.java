@@ -14,6 +14,7 @@ public class Review {
 	private int userId;
 	private String content;
 	private String imagePath;
+	private int view;
 	private Date createdAt;
 	private Date updatedAt;
 }

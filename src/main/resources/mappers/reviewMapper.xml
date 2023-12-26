@@ -74,4 +74,11 @@
  			`id` = #{reviewId}
 			AND `userId` = #{userId}
  	</delete>
+ 	<update id="updateReviewView">
+ 		UPDATE `review`
+ 		SET
+ 			`view` = `view` + 1
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
  </mapper>
