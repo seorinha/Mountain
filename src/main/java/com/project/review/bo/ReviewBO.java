@@ -114,8 +114,8 @@ public class ReviewBO {
 	
 	
 	//조회수
-	public void updateReviewView(int id) {
-		reviewMapper.updateReviewView(id);
+	public void updateReviewView(int reviewId) {
+		reviewMapper.updateReviewView(reviewId);
 	}
 	
 }

@@ -87,6 +87,7 @@
 					      <th>후기내용</th>
 					      <th>작성자</th>
 					      <th>작성시간</th>
+					      <th>조회수</th>
 					    </tr>
 				  	</thead>
 				  	<tbody>
@@ -96,6 +97,7 @@
 					      <td><a href="/review/review-detail-view?reviewId=${review.id}">${review.content}</a></td>
 					      <td></td>
 					      <td><fmt:formatDate value="${review.createdAt}" pattern="yyyy년 M월 d일 HH:mm:dd" /></td>
+					      <td>${review.view}</td>
 					    </tr>
 					 </c:forEach>
 				 	 </tbody>

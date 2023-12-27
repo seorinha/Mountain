@@ -10,6 +10,7 @@
 		, `userId`
 		, `content`
 		, `imagePath`
+		, `view`
 		, `createdAt`
 		, `updatedAt`
 	FROM
@@ -25,6 +26,7 @@
 		, `userId`
 		, `content`
 		, `imagePath`
+		, `view`
 		, `createdAt`
 		, `updatedAt`
  	)
@@ -45,6 +47,7 @@
 			, `userId`
 			, `content`
 			, `imagePath`
+			, `view`
 			, `createdAt`
 			, `updatedAt`
 		FROM
@@ -79,6 +82,6 @@
  		SET
  			`view` = `view` + 1
  		WHERE
- 			`id` = #{id}
+ 			`id` = #{reviewId}
  	</update>
  </mapper>
