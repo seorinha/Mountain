@@ -26,7 +26,6 @@
 		, `userId`
 		, `content`
 		, `imagePath`
-		, `view`
 		, `createdAt`
 		, `updatedAt`
  	)
