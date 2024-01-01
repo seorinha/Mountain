@@ -1,5 +1,6 @@
 package com.project.review.bo;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -30,10 +31,41 @@ public class ReviewBO {
 	//리뷰 리스트 
 	//input: mtId, userId
 	//output: List<Review>
-	public List<Review> getReviewListByMtId(int mtId) {
-		return reviewMapper.selectReviewListByMtId(mtId);
+	public List<Review> getReviewListByMtId(int mtId, Integer prevId, Integer nextId) {
 		
+		String direction = null; //방향
+		Integer standardId = null; // 기준 reviewId
+		if (prevId != null) { //이전
+			direction = "prev";
+			standardId = prevId;
+			
+			List<Review> reviewList = reviewMapper.selectReviewListByMtId(mtId, direction, standardId, POST_MAX_SIZE);
+					
+			//reverse 5 6 7 -> 7 6 5
+			Collections.reverse(reviewList); //뒤집고 저장
+			
+			return reviewList;
+					
+		} else if (nextId != null) { //다음
+			direction = "next";
+			standardId = nextId;
+		}
+		
+		return reviewMapper.selectReviewListByMtId(mtId, direction, standardId, POST_MAX_SIZE);
 	}
+	
+	//이전 페이지의 마지막인가?
+	public boolean isPrevLastPageByMtId(int prevId, int mtId) {
+		int reviewId = reviewMapper.selectReviewIdByMtIdAndSort(mtId, "DESC");
+		return reviewId == prevId; //같으면 끝 true, 아니면 false
+	}
+		
+	//다음 페이지의 마지막인가
+	public boolean isNextLastPageByMtId(int nextId, int mtId) {
+		int reviewId = reviewMapper.selectReviewIdByMtIdAndSort(mtId, "ASC");
+		return reviewId == nextId; //같으면 끝 true, 아니면 false
+	}
+		
 	
 	
 	//리뷰작성

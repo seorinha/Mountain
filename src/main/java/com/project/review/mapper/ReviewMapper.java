@@ -11,7 +11,16 @@ import com.project.review.domain.Review;
 public interface ReviewMapper {
 
 	//리뷰 리스트
-	public List<Review> selectReviewListByMtId(int mtId);
+	public List<Review> selectReviewListByMtId(
+			@Param("mtId") int mtId,
+			@Param("direction") String direction,
+    		@Param("standardId") Integer standardId,
+    		@Param("limit") int limit);
+	
+	//이전끝 다음 끝 없애기 설정
+    public int selectReviewIdByMtIdAndSort(
+    		@Param("mtId") int mtId,
+    		@Param("sort") String sort);
 	
 	//글쓰기
 	public void insertReview(

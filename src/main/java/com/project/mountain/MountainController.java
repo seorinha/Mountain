@@ -39,6 +39,8 @@ public class MountainController {
 	@GetMapping("/mountain-review-view")
 	public String mountainReviewView(
 			@RequestParam("mtId") int mtId, 
+			@RequestParam(value = "prevId", required = false) Integer prevIdParam, 
+			@RequestParam(value = "nextId", required = false) Integer nextIdParam, 
 			Model model,
 			HttpSession session) {
 		
@@ -51,11 +53,32 @@ public class MountainController {
 		
 		Mountain mountain = mountainBO.getMountainById(mtId);
 		Bookmark bookmark = bookmarkBO.getBookmarkByMtIdUserId(mtId, userId);
-		List<Review> reviewList = reviewBO.getReviewListByMtId(mtId);
+		List<Review> reviewList = reviewBO.getReviewListByMtId(mtId, prevIdParam, nextIdParam);
+		int nextId = 0;
+		int prevId = 0;
+		if (reviewList.isEmpty() == false) {
+			//reviewList가 비어있을 때 오류를 방지하기 위함  []
+			nextId = reviewList.get(reviewList.size() - 1).getId(); //가져온 리스트의 가장 끝 값(작은 id)
+			prevId = reviewList.get(0).getId();
+			
+			//이전 방향의 끝인가?
+			//prevId와 Review테이블의 가장 큰 id값이 같다면 이전 페이지가 없다는 뜻
+			if (reviewBO.isPrevLastPageByMtId(prevId, mtId)) {
+				prevId = 0;
+			}
+			
+			//다음 방향의 끝인가?
+			//nextId와 Review테이블의 가장 작은 id값이 같면 다음 페이지가 없다는 뜻
+			if (reviewBO.isNextLastPageByMtId(nextId, mtId)) {
+				nextId = 0;
+			}
+ 		}
 		
 		model.addAttribute("mtId", mtId);
 		model.addAttribute("bookmark", bookmark);
 		model.addAttribute("mountain", mountain);
+		model.addAttribute("prevId", prevId);
+		model.addAttribute("nextId", nextId);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("viewName", "mountain/mountain");
 		return "template/layout";
