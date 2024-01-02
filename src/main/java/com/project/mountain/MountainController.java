@@ -63,13 +63,13 @@ public class MountainController {
 			
 			//이전 방향의 끝인가?
 			//prevId와 Review테이블의 가장 큰 id값이 같다면 이전 페이지가 없다는 뜻
-			if (reviewBO.isPrevLastPageByMtId(prevId, mtId)) {
+			if (reviewBO.isPrevLastPageByUserId(prevId, userId)) {
 				prevId = 0;
 			}
 			
 			//다음 방향의 끝인가?
 			//nextId와 Review테이블의 가장 작은 id값이 같면 다음 페이지가 없다는 뜻
-			if (reviewBO.isNextLastPageByMtId(nextId, mtId)) {
+			if (reviewBO.isNextLastPageByUserId(nextId, userId)) {
 				nextId = 0;
 			}
  		}

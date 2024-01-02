@@ -34,16 +34,16 @@
 		</if>
 	LIMIT ${limit}
  </select>
- <select id="selectReviewIdByMtIdAndSort" parameterType="map" resultType="int">
- 		SELECT
- 			`id`
- 		FROM
- 			`review`
- 		WHERE
- 			`mtId` = #{mtId}
- 		ORDER BY `id` ${sort}
- 		LIMIT 1
- 	</select>
+ <select id="selectReviewIdByUserIdAndSort" parameterType="map" resultType="int">
+ 	SELECT
+ 		`id`
+ 	FROM
+ 		`review`
+ 	WHERE
+ 		`userId` = #{userId}
+ 	ORDER BY `id` ${sort}
+ 	LIMIT 1
+ </select>
  <insert id="insertReview" parameterType="map">
  	INSERT INTO `review`
  	(
