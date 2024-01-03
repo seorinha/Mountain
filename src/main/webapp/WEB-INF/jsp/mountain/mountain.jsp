@@ -180,9 +180,9 @@ $(document).ready(function() {
 			}
 			
 		});
-		
-		
-	});
+	}); // - 즐겨찾기 끝
+	
+	//페이징 설정
 });
 
 </script>

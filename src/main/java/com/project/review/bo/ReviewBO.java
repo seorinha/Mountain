@@ -34,7 +34,7 @@ public class ReviewBO {
 	public List<Review> getReviewListByMtId(int mtId, Integer prevId, Integer nextId) {
 		
 		String direction = null; //방향
-		Integer standardId = null; // 기준 reviewId
+		Integer standardId = null; // 기준이 되는 reviewId
 		if (prevId != null) { //이전
 			direction = "prev";
 			standardId = prevId;

@@ -58,17 +58,15 @@ public class MountainController {
 		int prevId = 0;
 		if (reviewList.isEmpty() == false) {
 			//reviewList가 비어있을 때 오류를 방지하기 위함  []
-			nextId = reviewList.get(reviewList.size() - 1).getId(); //가져온 리스트의 가장 끝 값(작은 id)
-			prevId = reviewList.get(0).getId();
+			nextId = reviewList.get(reviewList.size() - 1).getId(); //가져온 리스트의 리뷰의 id를 가져온다(가장 큰값 = 가장 작은 id)
+			prevId = reviewList.get(0).getId(); 
 			
 			//이전 방향의 끝인가?
-			//prevId와 Review테이블의 가장 큰 id값이 같다면 이전 페이지가 없다는 뜻
 			if (reviewBO.isPrevLastPageByUserId(prevId, userId)) {
 				prevId = 0;
 			}
 			
 			//다음 방향의 끝인가?
-			//nextId와 Review테이블의 가장 작은 id값이 같면 다음 페이지가 없다는 뜻
 			if (reviewBO.isNextLastPageByUserId(nextId, userId)) {
 				nextId = 0;
 			}

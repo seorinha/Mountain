@@ -23,12 +23,14 @@
 		]]>
 		ORDER BY `id` DESC			
 		</if>
+		
 		<if test="direction == 'prev'">
 		<![CDATA[
 		AND `id` > #{standardId}
 		]]>
 		ORDER BY `id` ASC
 		</if>
+		
 		<if test="direction == null">	
 		ORDER BY `id` DESC
 		</if>
@@ -36,12 +38,12 @@
  </select>
  <select id="selectReviewIdByUserIdAndSort" parameterType="map" resultType="int">
  	SELECT
- 		`id`
+ 		`mtId`
  	FROM
  		`review`
  	WHERE
  		`userId` = #{userId}
- 	ORDER BY `id` ${sort}
+ 	ORDER BY `mtId` ${sort}
  	LIMIT 1
  </select>
  <insert id="insertReview" parameterType="map">
