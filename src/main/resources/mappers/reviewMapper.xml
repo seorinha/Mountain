@@ -36,14 +36,14 @@
 		</if>
 	LIMIT ${limit}
  </select>
- <select id="selectReviewIdByUserIdAndSort" parameterType="map" resultType="int">
+ <select id="selectReviewIdByMtIdAndSort" parameterType="map" resultType="int">
  	SELECT
- 		`mtId`
+ 		`id`
  	FROM
  		`review`
  	WHERE
- 		`userId` = #{userId}
- 	ORDER BY `mtId` ${sort}
+ 		`mtId` = #{mtId}
+ 	ORDER BY `id` ${sort}
  	LIMIT 1
  </select>
  <insert id="insertReview" parameterType="map">

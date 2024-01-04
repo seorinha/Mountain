@@ -55,14 +55,14 @@ public class ReviewBO {
 	}
 	
 	//이전 페이지의 마지막인가?
-	public boolean isPrevLastPageByUserId(int prevId, int userId) {
-		int reviewId = reviewMapper.selectReviewIdByUserIdAndSort(userId, "DESC");
+	public boolean isPrevLastPageByMtId(int prevId, int mtId) {
+		int reviewId = reviewMapper.selectReviewIdByMtIdAndSort(mtId, "DESC");
 		return reviewId == prevId; //같으면 끝 true, 아니면 false
 	}
 		
 	//다음 페이지의 마지막인가
-	public boolean isNextLastPageByUserId(int nextId, int userId) {
-		int reviewId = reviewMapper.selectReviewIdByUserIdAndSort(userId, "ASC");
+	public boolean isNextLastPageByMtId(int nextId, int mtId) {
+		int reviewId = reviewMapper.selectReviewIdByMtIdAndSort(mtId, "ASC");
 		return reviewId == nextId; //같으면 끝 true, 아니면 false
 	}
 		

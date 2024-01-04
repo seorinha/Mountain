@@ -62,12 +62,12 @@ public class MountainController {
 			prevId = reviewList.get(0).getId(); 
 			
 			//이전 방향의 끝인가?
-			if (reviewBO.isPrevLastPageByUserId(prevId, userId)) {
+			if (reviewBO.isPrevLastPageByMtId(prevId, mtId)) {
 				prevId = 0;
 			}
 			
 			//다음 방향의 끝인가?
-			if (reviewBO.isNextLastPageByUserId(nextId, userId)) {
+			if (reviewBO.isNextLastPageByMtId(nextId, mtId)) {
 				nextId = 0;
 			}
  		}

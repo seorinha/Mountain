@@ -18,8 +18,8 @@ public interface ReviewMapper {
     		@Param("limit") int limit);
 	
 	//이전끝 다음 끝 없애기 설정
-    public int selectReviewIdByUserIdAndSort(
-    		@Param("userId") int userId, 
+    public int selectReviewIdByMtIdAndSort(
+    		@Param("mtId") int mtId, 
 			@Param("sort") String sort);
 	
 	//글쓰기
