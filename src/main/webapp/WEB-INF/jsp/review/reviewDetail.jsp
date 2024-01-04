@@ -25,7 +25,7 @@
 	
 	<%--버튼들 --%>
 	<div class="d-flex justify-content-between mt-3">
-		<a href="mountain/mountain-review-view?mtId=${mtId}" class="btn btn-outline-secondary">목록</a>
+		<a href="/mountain/mountain-review-view?mtId=${review.mtId}" class="btn btn-outline-secondary">목록</a>
 	
 		<div>
 			<button type="button" id="deleteBtn" class="btn btn-outline-danger" data-review-id="${reviewId}">삭제</button>
@@ -84,7 +84,8 @@
 			, success:function(data) {
 				if (data.result == "성공") {
 					alert("후기가 수정되었습니다.");
-					location.reload(true);
+					location.href = "/mountain/mountain-review-view?mtId=${review.mtId}";
+	
 				} else {
 					// 로직 실패
 					alert(data.errorMessage);

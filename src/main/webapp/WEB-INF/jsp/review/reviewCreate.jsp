@@ -37,6 +37,8 @@ $(document).ready(function() {
 		let mtId = $(this).data('mountain-id');
 		//alert(mtId);
 		
+		
+		let loginId = $('#loginId').val();
 		let content = $('#content').val();
 		let fileName = $('#file').val(); //[object HTMLInputElement]
 		//alert(file); 
@@ -68,6 +70,7 @@ $(document).ready(function() {
 		//2. javascript로 form태그를 만들거나.
 		let formData = new FormData();
 		formData.append("mtId", mtId);
+		formData.append("loginId", loginId);
 		formData.append("content", content); // key는 form 태그의 name 속성과 같고 Request parameter명이 된다.
 		formData.append("file", $('#file')[0].files[0]);
 		
