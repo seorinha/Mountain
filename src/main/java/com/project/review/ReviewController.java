@@ -43,6 +43,7 @@ public class ReviewController {
 	@GetMapping("/review-detail-view")
 	public String reviewDetailView(
 			@RequestParam ("reviewId") int reviewId,
+			@RequestParam("view") int view,
 			HttpSession session,
 			Model model) {
 		
@@ -52,6 +53,7 @@ public class ReviewController {
 		
 		model.addAttribute("review", review);
 		model.addAttribute("reviewId", reviewId);
+		model.addAttribute("view", view);
 		model.addAttribute("viewName", "review/reviewDetail");
 		return "template/layout";
 	}
