@@ -12,7 +12,6 @@ public class Review {
 	private int id;
 	private int mtId;
 	private int userId;
-	private String loginId;
 	private String content;
 	private String imagePath;
 	private int view;

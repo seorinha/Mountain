@@ -71,15 +71,15 @@ public class ReviewBO {
 	//리뷰작성
 	//input: 파라미터들
 	//output: x
-	public void addReview(int mtId, int userId, String loginId, String content, MultipartFile file) {
+	public void addReview(int mtId, int userId, String userLoginId, String content, MultipartFile file) {
 		String imagePath = null;
 		
 		//이미지 있으면 업로드
 		if (file != null) {
-			imagePath = fileManager.saveFile(loginId, file);
+			imagePath = fileManager.saveFile(userLoginId, file);
 		}
 		
-		reviewMapper.insertReview(mtId, userId, loginId, content, imagePath);
+		reviewMapper.insertReview(mtId, userId, content, imagePath);
 	}
 	
 	//글 상세 가져오기

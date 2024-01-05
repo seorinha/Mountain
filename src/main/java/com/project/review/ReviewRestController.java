@@ -34,17 +34,16 @@ public class ReviewRestController {
 	@PostMapping("/create")
 	public Map<String, Object> create(
 			@RequestParam("mtId") int mtId,
-			@RequestParam("loginId") String loginId,
 			@RequestParam("content") String content,
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session) {
 		
 	
 		 int userId = (int)session.getAttribute("userId");
-		
+		 String userLoginId = (String)session.getAttribute("userLoginId");
 		
 		//db insert
-		reviewBO.addReview(mtId, userId, loginId, content, file);
+		reviewBO.addReview(mtId, userId, userLoginId, content, file);
 		
 		//응답값
 		Map<String, Object> result = new HashMap<>();

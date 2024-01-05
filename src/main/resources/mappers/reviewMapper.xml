@@ -51,7 +51,6 @@
  	(
  		`mtId`
 		, `userId`
-		, `loginId`
 		, `content`
 		, `imagePath`
 		, `createdAt`
@@ -61,7 +60,6 @@
  	(
  		#{mtId}
  		, #{userId}
- 		, #{loginId}
  		, #{content}
  		, #{imagePath}
  		, NOW()

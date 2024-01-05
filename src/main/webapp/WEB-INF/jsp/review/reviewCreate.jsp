@@ -37,8 +37,6 @@ $(document).ready(function() {
 		let mtId = $(this).data('mountain-id');
 		//alert(mtId);
 		
-		
-		let loginId = $('#loginId').val();
 		let content = $('#content').val();
 		let fileName = $('#file').val(); //[object HTMLInputElement]
 		//alert(file); 

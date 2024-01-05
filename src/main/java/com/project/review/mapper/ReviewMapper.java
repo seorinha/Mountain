@@ -26,7 +26,6 @@ public interface ReviewMapper {
 	public void insertReview(
 			@Param("mtId") int mtId, 
 			@Param("userId") int userId, 
-			@Param("loginId") String loginId, 
 			@Param("content") String content,
 			@Param("imagePath") String imagePath);
 	

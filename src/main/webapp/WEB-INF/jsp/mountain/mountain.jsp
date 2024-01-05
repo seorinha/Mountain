@@ -95,7 +95,7 @@
 					    <tr>
 					      <td>${review.id}</td>
 					      <td><a href="/review/review-detail-view?reviewId=${review.id}">${review.content}</a></td>
-					      <td>${review.loginId}</td>
+					      <td>${sessionScope.userLoginId}</td>
 					      <td><fmt:formatDate value="${review.createdAt}" pattern="yyyy년 M월 d일 HH:mm:dd" /></td>
 					      <td>${review.view}</td>
 					    </tr>
