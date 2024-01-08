@@ -48,7 +48,5 @@ public interface ReviewMapper {
     		@Param("userId") int userId);
 	
 	//조회수
-	public void updateReviewView(
-			@Param("reviewId") int reviewId,
-    		@Param("view") int view);
+	public void updateReviewView(int reviewId);
 }

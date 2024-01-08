@@ -103,7 +103,7 @@
  			`id` = #{reviewId}
 			AND `userId` = #{userId}
  	</delete>
- 	<update id="updateReviewView" parameterType="map">
+ 	<update id="updateReviewView">
  		UPDATE `review`
  		SET
  			`view` = `view` + 1
