@@ -14,11 +14,9 @@ public class Mountain {
 	private String mtMap;
 	private String mtLocation;
 	private int mtHeight;
-	private String mtReason;
-	private int upMin;
-	private int downMin;
-	private String difficulty;
 	private Date createdAt;
 	private Date updatedAt;
+	
+	
 	
 }
