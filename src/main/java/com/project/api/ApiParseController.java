@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,8 +26,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApiParseController {
 	
-	private final MountainMapper mountainMapper;
+	@Autowired MountainMapper mountainMapper;
 
+	@GetMapping
 	 public static void main(String[] args) throws IOException {
 	     // url을 만들기 위한 StringBuilder   
 		 StringBuilder urlBuilder = new StringBuilder("https://apis.data.go.kr/B553662/top100FamtListBasiInfoService/getTop100FamtListBasiInfoList"); /*URL*/
@@ -66,26 +69,29 @@ public class ApiParseController {
 	     // 전달받은 데이터 확인
 	     System.out.println(sb.toString());
 	     
-	     //json 파싱
-	     JsonParser parser = new JsonParser();
-	     JsonObject obj = parser.parse(sb.toString()).getAsJsonObject();
 	     
-	     JsonArray arr = obj.get("response").getAsJsonObject()
-                 .get("body").getAsJsonObject()
-                 .get("items").getAsJsonObject()
-                 .get("item").getAsJsonArray();
-	     
-	     for (JsonElement jsonElement : arr) {
-	         JsonObject temp = jsonElement.getAsJsonObject();
 
-	         MountainMapper.save(Mountain.builder()
-	                          .mtName(temp.get("frtrlNm").getAsString())
-	                          .mtLocation(temp.get("addrNm").getAsString())
-	                          .mtHeight(temp.get("aslAltide").getAsString())
-	                          .build());
-	      }
-	     
-	     
-	    }
-	
+         JsonParser parser = new JsonParser();
+         JsonObject obj = parser.parse(sb.toString()).getAsJsonObject();
+
+         JsonObject responseBody = obj.getAsJsonObject("response").getAsJsonObject("body");
+         if (responseBody != null) {
+             JsonArray items = responseBody.getAsJsonObject("items").getAsJsonArray("item");
+
+             for (JsonElement jsonElement : items) {
+                 JsonObject temp = jsonElement.getAsJsonObject();
+
+                 String mtName = temp.has("frtrlNm") ? temp.get("frtrlNm").getAsString() : "";
+                 String mtLocation = temp.has("addrNm") ? temp.get("addrNm").getAsString() : "";
+                 int mtHeight = temp.has("aslAltide") ? temp.get("aslAltide").getAsInt() : 0;
+
+               
+                 Mountain mountain = Mountain.builder()
+                         .mtName(mtName)
+                         .mtLocation(mtLocation)
+                         .mtHeight(mtHeight)
+                         .build();
+                 }
+             }
+	}
 }

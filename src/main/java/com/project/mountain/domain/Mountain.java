@@ -2,9 +2,11 @@ package com.project.mountain.domain;
 
 import java.util.Date;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
+@Builder
 @ToString
 @Data
 public class Mountain {
@@ -16,6 +18,7 @@ public class Mountain {
 	private int mtHeight;
 	private Date createdAt;
 	private Date updatedAt;
+	
 	
 	
 	
