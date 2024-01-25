@@ -44,25 +44,6 @@
 		      <td>${mountain.mtHeight}</td>
 		    </tr>
 		    
-		    <tr>
-		      <th scope="row">산 정보</th>
-		      <td>${mountain.mtReason}</td>
-		    </tr>
-		    
-		    <tr>
-		      <th scope="row">상행시간</th>
-		      <td>${mountain.upMin}</td>
-		    </tr>
-		    
-		    <tr>
-		      <th scope="row">하행시간</th>
-		      <td>${mountain.downMin}</td>
-		    </tr>
-		    
-		    <tr>
-		      <th scope="row">난이도</th>
-		      <td>${mountain.difficulty}</td>
-		    </tr>
  			 
 		</table>
 	</div>

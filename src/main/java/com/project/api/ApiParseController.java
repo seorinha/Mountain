@@ -3,6 +3,7 @@ package com.project.api;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -16,35 +17,36 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import com.project.mountain.domain.Mountain;
 import com.project.mountain.mapper.MountainMapper;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/api/parse")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class ApiParseController {
-	
+
 	@Autowired MountainMapper mountainMapper;
 
-	@GetMapping
+	@GetMapping("/mountain-info")
 	 public static void main(String[] args) throws IOException {
-	     // url을 만들기 위한 StringBuilder   
+	     // url을 만들기 위한 StringBuilder
 		 StringBuilder urlBuilder = new StringBuilder("https://apis.data.go.kr/B553662/top100FamtListBasiInfoService/getTop100FamtListBasiInfoList"); /*URL*/
-	     // open api의 요청 규격에 맞는 파라미터 생성, 발급받은 인증키   
+	     // open api의 요청 규격에 맞는 파라미터 생성, 발급받은 인증키
 		 urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=JVpFRa8p0GbG8tVECHTxUPjTZ4DJAJRZkHcnrC%2Br0zNf%2FijOpKtFEiVqGI8BJIHHcyvZAIo95FHY0zOwCscOOg%3D%3D"); /*Service Key*/
 	     urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
 	     urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
-	     urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
 	     urlBuilder.append("&" + URLEncoder.encode("frtrlNm","UTF-8") + "=" + URLEncoder.encode("가리산", "UTF-8")); /*조회할 산 이름*/
 	     urlBuilder.append("&" + URLEncoder.encode("addrNm","UTF-8") + "=" + URLEncoder.encode("강원도 춘천시 북산면ㆍ동면, 홍천군 두촌면ㆍ화촌면", "UTF-8")); /*주소*/
 	     urlBuilder.append("&" + URLEncoder.encode("aslAltide","UTF-8") + "=" + URLEncoder.encode("1051.0", "UTF-8")); /*고도*/
+	     urlBuilder.append("&type=json");/*결과 json 포맷*/
 	     // url 객체 생성
 	     URL url = new URL(urlBuilder.toString());
 	     // 요청 하고자 하는 url과 통신하기 위한 Connection 객체 생성
 	     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	     // 통신을 위한 메소드 
+	     // 통신을 위한 메소드
 	     conn.setRequestMethod("GET");
 	     // 통신을 위한 Content-type
 	     conn.setRequestProperty("Content-type", "application/json");
@@ -68,11 +70,13 @@ public class ApiParseController {
 	     conn.disconnect();
 	     // 전달받은 데이터 확인
 	     System.out.println(sb.toString());
-	     
-	     
+
+
 
          JsonParser parser = new JsonParser();
-         JsonObject obj = parser.parse(sb.toString()).getAsJsonObject();
+         JsonReader reader = new JsonReader(new StringReader(sb.toString()));
+         reader.setLenient(true);
+         JsonObject obj = parser.parse(reader).getAsJsonObject();
 
          JsonObject responseBody = obj.getAsJsonObject("response").getAsJsonObject("body");
          if (responseBody != null) {
@@ -85,7 +89,7 @@ public class ApiParseController {
                  String mtLocation = temp.has("addrNm") ? temp.get("addrNm").getAsString() : "";
                  int mtHeight = temp.has("aslAltide") ? temp.get("aslAltide").getAsInt() : 0;
 
-               
+
                  Mountain mountain = Mountain.builder()
                          .mtName(mtName)
                          .mtLocation(mtLocation)
