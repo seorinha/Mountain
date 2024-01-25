@@ -16,6 +16,8 @@ public class Mountain {
 	private String mtMap;
 	private String mtLocation;
 	private int mtHeight;
+	private double mtLot;
+	private double mtLat;
 	private Date createdAt;
 	private Date updatedAt;
 	

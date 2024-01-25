@@ -41,6 +41,8 @@ public class ApiParseController {
 	     urlBuilder.append("&" + URLEncoder.encode("frtrlNm","UTF-8") + "=" + URLEncoder.encode("가리산", "UTF-8")); /*조회할 산 이름*/
 	     urlBuilder.append("&" + URLEncoder.encode("addrNm","UTF-8") + "=" + URLEncoder.encode("강원도 춘천시 북산면ㆍ동면, 홍천군 두촌면ㆍ화촌면", "UTF-8")); /*주소*/
 	     urlBuilder.append("&" + URLEncoder.encode("aslAltide","UTF-8") + "=" + URLEncoder.encode("1051.0", "UTF-8")); /*고도*/
+	     urlBuilder.append("&" + URLEncoder.encode("lot","UTF-8") + "=" + URLEncoder.encode("127.956485", "UTF-8")); /*경도*/
+	     urlBuilder.append("&" + URLEncoder.encode("lat","UTF-8") + "=" + URLEncoder.encode("37.871353", "UTF-8")); /*위도*/
 	     urlBuilder.append("&type=json");/*결과 json 포맷*/
 	     // url 객체 생성
 	     URL url = new URL(urlBuilder.toString());
@@ -88,14 +90,20 @@ public class ApiParseController {
                  String mtName = temp.has("frtrlNm") ? temp.get("frtrlNm").getAsString() : "";
                  String mtLocation = temp.has("addrNm") ? temp.get("addrNm").getAsString() : "";
                  int mtHeight = temp.has("aslAltide") ? temp.get("aslAltide").getAsInt() : 0;
+                 double mtLot = temp.has("mtLot") ? temp.get("mtLot").getAsDouble() : 0;
+                 double mtLat = temp.has("mtLat") ? temp.get("mtLat").getAsDouble() : 0;
 
 
                  Mountain mountain = Mountain.builder()
                          .mtName(mtName)
                          .mtLocation(mtLocation)
                          .mtHeight(mtHeight)
+                         .mtLot(mtLot)
+                         .mtLat(mtLat)
                          .build();
                  }
              }
 	}
+	
+	
 }
