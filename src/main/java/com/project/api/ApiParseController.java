@@ -74,10 +74,11 @@ public class ApiParseController {
 	     System.out.println(sb.toString());
 
 
-
+	     // jsonParser를 사용해서 string 값을 json객체로 만들어준다
          JsonParser parser = new JsonParser();
          JsonReader reader = new JsonReader(new StringReader(sb.toString()));
          reader.setLenient(true);
+         // 만들어진 json객체는 jsonObject클래스를 사용해서 저장된다
          JsonObject obj = parser.parse(reader).getAsJsonObject();
 
          JsonObject responseBody = obj.getAsJsonObject("response").getAsJsonObject("body");
