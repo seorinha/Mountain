@@ -9,7 +9,7 @@
     </appender>
 
     <!-- Logger -->
-    <logger name="com.Project" level="DEBUG" appender-ref="console" />
+    <logger name="com.project" level="DEBUG" appender-ref="console" />
 
     <!-- Root Logger -->
     <root level="info">
