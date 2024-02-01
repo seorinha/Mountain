@@ -18,26 +18,27 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import com.project.mountain.domain.Mountain;
-import com.project.mountain.mapper.MountainMapper;
+import com.project.mountain.entity.MountainEntity;
+import com.project.mountain.repository.MountainRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class ApiParseController {
+public class ApiParseExplorer {
 
-	@Autowired MountainMapper mountainMapper;
+	@Autowired
+    private MountainRepository mountainRepository;
 
 	@GetMapping("/mountain-info")
-	 public static void main(String[] args) throws IOException {
+	 public void saveMountainData() throws IOException {
 	     // url을 만들기 위한 StringBuilder
 		 StringBuilder urlBuilder = new StringBuilder("https://apis.data.go.kr/B553662/top100FamtListBasiInfoService/getTop100FamtListBasiInfoList"); /*URL*/
 	     // open api의 요청 규격에 맞는 파라미터 생성, 발급받은 인증키
 		 urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=JVpFRa8p0GbG8tVECHTxUPjTZ4DJAJRZkHcnrC%2Br0zNf%2FijOpKtFEiVqGI8BJIHHcyvZAIo95FHY0zOwCscOOg%3D%3D"); /*Service Key*/
 	     urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-	     urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
+	     urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("50", "UTF-8")); /*한 페이지 결과 수*/
 	     urlBuilder.append("&" + URLEncoder.encode("frtrlNm","UTF-8") + "=" + URLEncoder.encode("가리산", "UTF-8")); /*조회할 산 이름*/
 	     urlBuilder.append("&" + URLEncoder.encode("addrNm","UTF-8") + "=" + URLEncoder.encode("강원도 춘천시 북산면ㆍ동면, 홍천군 두촌면ㆍ화촌면", "UTF-8")); /*주소*/
 	     urlBuilder.append("&" + URLEncoder.encode("aslAltide","UTF-8") + "=" + URLEncoder.encode("1051.0", "UTF-8")); /*고도*/
@@ -78,32 +79,36 @@ public class ApiParseController {
          JsonParser parser = new JsonParser();
          JsonReader reader = new JsonReader(new StringReader(sb.toString()));
          reader.setLenient(true);
+         
          // 만들어진 json객체는 jsonObject클래스를 사용해서 저장된다
          JsonObject obj = parser.parse(reader).getAsJsonObject();
 
          JsonObject responseBody = obj.getAsJsonObject("response").getAsJsonObject("body");
          if (responseBody != null) {
-             JsonArray items = responseBody.getAsJsonObject("items").getAsJsonArray("item");
+             JsonArray infoArr = responseBody.getAsJsonObject("items").getAsJsonArray("item");
 
-             for (JsonElement jsonElement : items) {
+             for (JsonElement jsonElement : infoArr) {
                  JsonObject temp = jsonElement.getAsJsonObject();
 
                  String mtName = temp.has("frtrlNm") ? temp.get("frtrlNm").getAsString() : "";
                  String mtLocation = temp.has("addrNm") ? temp.get("addrNm").getAsString() : "";
-                 int mtHeight = temp.has("aslAltide") ? temp.get("aslAltide").getAsInt() : 0;
-                 double mtLot = temp.has("mtLot") ? temp.get("mtLot").getAsDouble() : 0;
-                 double mtLat = temp.has("mtLat") ? temp.get("mtLat").getAsDouble() : 0;
+                 double mtHeight = temp.has("aslAltide") ? temp.get("aslAltide").getAsInt() : 0;
+                 decimal mtLot = temp.has("mtLot") ? temp.get("mtLot").getAsDouble() : 0;
+                 decimal mtLat = temp.has("mtLat") ? temp.get("mtLat").getAsDouble() : 0;
 
 
-                 Mountain mountain = Mountain.builder()
+                 MountainEntity mountainEntity = MountainEntity.builder()
                          .mtName(mtName)
                          .mtLocation(mtLocation)
                          .mtHeight(mtHeight)
                          .mtLot(mtLot)
                          .mtLat(mtLat)
                          .build();
-                 }
-             }
+                 
+                 mountainRepository.save(mountainEntity);
+                 
+              }
+         }
 	}
 	
 	

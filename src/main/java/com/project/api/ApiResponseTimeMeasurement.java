@@ -25,7 +25,7 @@ public class ApiResponseTimeMeasurement {
 
     private static void measureApiResponseTime(String apiUrl) throws Exception {
         // API 요청 전에 현재 시간 기록
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
 
         // API에 GET 요청 보내기
         URL url = new URL(apiUrl);
@@ -46,11 +46,11 @@ public class ApiResponseTimeMeasurement {
         reader.close();
 
         // API 응답 후에 현재 시간 기록
-        long endTime = System.currentTimeMillis();
+        long endTime = System.nanoTime();
 
-        // 응답 시간 계산 (밀리초 단위)
+        // 응답 시간 계산 (나노초 단위)
         long responseTime = endTime - startTime;
-        log.info("#### 응답 시간: " + responseTime + " 밀리초");
+        log.info("#### 응답 시간: " + responseTime + " ns");
 
         // API 응답 내용 출력 (옵션)
         // log.info("응답 내용: " + responseContent.toString());

@@ -13,9 +13,8 @@ public class Mountain {
 
 	private int id;
 	private String mtName;
-	private String mtMap;
 	private String mtLocation;
-	private int mtHeight;
+	private double mtHeight;
 	private double mtLot;
 	private double mtLat;
 	private Date createdAt;

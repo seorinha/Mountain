@@ -7,13 +7,10 @@
  	SELECT
 		`id`
 		, `mtName`
-		, `mtMap`
 		, `mtLocation`
 		, `mtHeight`
-		, `mtReason`
-		, `upMin`
-		, `downMin`
-		, `difficulty`
+		, `mtLot`
+		, `mtLat`
 		, `createdAt`
 		, `updatedAt`
 	FROM

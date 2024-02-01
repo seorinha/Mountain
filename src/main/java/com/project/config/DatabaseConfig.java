@@ -11,8 +11,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan(basePackages="com.project.*")
-public class DatabaseConfig {
+@MapperScan(basePackages="com.project.*") //mapper 인터페이스 패키지 위치 작성
+public class DatabaseConfig { 
 
 	 @Bean
 	    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
