@@ -1,5 +1,6 @@
 package com.project.mountain.entity;
 
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
@@ -10,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.project.post.entity.PostEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,11 +40,11 @@ public class MountainEntity {
 	@Column(name = "mtHeight")
 	private double mtHeight;
 	
-	@Column(name = "mtLot")
-	private double mtLot;
+	@Column(name = "mtLot", precision =13, scale = 10) //13자리 중 소수점아래가 10자리까지 확보되었다
+	private BigDecimal mtLot;
 	
-	@Column(name = "mtLat")
-	private double mtLat;
+	@Column(name = "mtLat", precision =13, scale = 10)
+	private BigDecimal mtLat;
 	
 	@UpdateTimestamp
 	@Column(name = "createdAt", updatable = false)

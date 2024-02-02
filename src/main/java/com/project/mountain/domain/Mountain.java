@@ -1,5 +1,6 @@
 package com.project.mountain.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import lombok.Builder;
@@ -15,8 +16,8 @@ public class Mountain {
 	private String mtName;
 	private String mtLocation;
 	private double mtHeight;
-	private double mtLot;
-	private double mtLat;
+	private BigDecimal mtLot;
+	private BigDecimal mtLat;
 	private Date createdAt;
 	private Date updatedAt;
 	

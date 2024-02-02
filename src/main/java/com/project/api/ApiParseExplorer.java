@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -93,8 +94,8 @@ public class ApiParseExplorer {
                  String mtName = temp.has("frtrlNm") ? temp.get("frtrlNm").getAsString() : "";
                  String mtLocation = temp.has("addrNm") ? temp.get("addrNm").getAsString() : "";
                  double mtHeight = temp.has("aslAltide") ? temp.get("aslAltide").getAsInt() : 0;
-                 decimal mtLot = temp.has("mtLot") ? temp.get("mtLot").getAsDouble() : 0;
-                 decimal mtLat = temp.has("mtLat") ? temp.get("mtLat").getAsDouble() : 0;
+                 BigDecimal mtLot = temp.has("lot") ? temp.get("lot").getAsBigDecimal() : BigDecimal.ZERO;
+                 BigDecimal mtLat = temp.has("lat") ? temp.get("lat").getAsBigDecimal() : BigDecimal.ZERO;
 
 
                  MountainEntity mountainEntity = MountainEntity.builder()
