@@ -25,7 +25,7 @@
 	FROM
 		`mountain`
  </select>
- <select id="selectMountain" resultType="com.project.mountain.domain.Mountain">
+ <select id="selectMountainBookmark" resultType="com.project.mountain.domain.Mountain">
  	SELECT
 		*
 	FROM

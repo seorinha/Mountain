@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <div>
 	<div class="contents-box">
 		<%--글쓰기 영역(로그인된 사람만 보이게) --%>
@@ -33,7 +35,7 @@
 				<%--userId, 날짜, 더보기 --%>
 				<div>
 					<div class="d-flex justify-content-between">
-						<span class="font-weight-bold ml-2 mt-2">${card.user.loginId}</span>
+						<span class="font-weight-bold ml-3 mt-2">${card.user.loginId}</span>
 						
 						<%--더보기(내가 쓴 글일 때만 노출, 삭제 또는 수정) --%>
 						<c:if test="${userId eq card.user.id}" >
@@ -43,7 +45,15 @@
 						</c:if>
 					</div>
 					<%--날짜 --%>
-					<fmt:formatDate value="${post.createdAt}" pattern="yyyy년 M월 d일" />					
+					<%
+						Date date = new Date();
+						SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy년 M월 d일");
+						String strDate = simpleDate.format(date);
+					%>
+					<div class="ml-3">					
+						<%=strDate %>
+					</div>
+					<%-- <fmt:formatDate value="${post.createdAt}" type="date" pattern="yyyy년 M월 d일" />--%>					
 				</div>	
 				
 				<%-- 카드 이미지 --%>

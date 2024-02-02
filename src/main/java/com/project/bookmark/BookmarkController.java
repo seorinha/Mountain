@@ -37,7 +37,7 @@ public class BookmarkController {
 			return "redirect:/user/sign-in-view";
 		}
 		
-		Mountain mountain = mountainBO.getMountain();
+		List<Mountain> mountain = mountainBO.getMountainBookmark();
 		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkListByUserId(userId);
 		
 		model.addAttribute("mountain", mountain);		

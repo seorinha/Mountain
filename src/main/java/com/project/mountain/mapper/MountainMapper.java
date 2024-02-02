@@ -16,6 +16,6 @@ public interface MountainMapper {
 	public List<Mountain> selectMountainList();
 	
 	//bookmark-list-view
-	public Mountain selectMountain();
+	public List<Mountain> selectMountainBookmark();
 	
 }

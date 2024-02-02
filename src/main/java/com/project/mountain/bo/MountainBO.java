@@ -26,8 +26,8 @@ public class MountainBO {
 	}
 	
 	//즐겨찾기에 정보 
-	public Mountain getMountain() {
-		return mountainMapper.selectMountain();
+	public List<Mountain> getMountainBookmark() {
+		return mountainMapper.selectMountainBookmark();
 	}
 	
 }
