@@ -37,10 +37,15 @@ public class BookmarkController {
 			return "redirect:/user/sign-in-view";
 		}
 		
-		List<Mountain> mountain = mountainBO.getMountainBookmark();
+		//List<Mountain> mountainList = mountainBO.getMountainBookmark();
 		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkListByUserId(userId);
 		
-		model.addAttribute("mountain", mountain);		
+		for (Bookmark bookmark : bookmarkList) {
+	        Mountain mountain = mountainBO.getMountainById(bookmark.getMtId());
+	        bookmark.setMountain(mountain);
+	    }
+		
+		//model.addAttribute("mountainList", mountainList);		
 		model.addAttribute("bookmarkList", bookmarkList);		
 		model.addAttribute("viewName", "bookmark/bookmark");
 		return "template/layout";

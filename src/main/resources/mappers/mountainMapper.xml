@@ -25,10 +25,5 @@
 	FROM
 		`mountain`
  </select>
- <select id="selectMountainBookmark" resultType="com.project.mountain.domain.Mountain">
- 	SELECT
-		*
-	FROM
-		`mountain`
- </select>
+ 
  </mapper>

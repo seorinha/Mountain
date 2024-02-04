@@ -14,10 +14,10 @@
 	<c:forEach items="${bookmarkList}" var="bookmark"> 
 	<div class="mount-box rounded mb-2">
 		<div class="d-flex align-items-center justify-content-between">
-			<a href="/mountain/mountain-review-view?mtId=${bookmark.mtId}">
+			<a href="/mountain/mountain-review-view?mtId=${bookmark.mountain.id}">
 				<div class="p-3">
-					<h3 class="font-weight-bold"></h3>
-					<h6></h6>
+					<h3 class="font-weight-bold">${bookmark.mountain.mtName}</h3>
+					<h6>${bookmark.mountain.mtLocation}</h6>
 				</div>
 			</a>
 			<div class="mr-4">
