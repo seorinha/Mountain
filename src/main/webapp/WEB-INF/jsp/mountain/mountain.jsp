@@ -108,26 +108,40 @@
 	</div>
 </div>
 
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=166cb8c90554b8d95c8841917a09a6fb"></script>
 <script>
-	var container = document.getElementById('map');
-	var options = {
-		center: new kakao.maps.LatLng(33.450701, 126.570667),
-		level: 3
-	};
-
-	var map = new kakao.maps.Map(container, options);
+	//mountain 객체가 존재하는 경우에만 지도를 표시합니다.
+	if (${mountain.mtLat} != null && ${mountain.mtLot} != null) {
+	    // 지도 표시할 div의 요소를 가져옵니다.
+	    var container = document.getElementById('map');
+	    
+	    // mountain 객체에서 mtLat과 mtLot을 가져와 LatLng 객체를 생성합니다.
+	    var centerPosition = new kakao.maps.LatLng(${mountain.mtLat}, ${mountain.mtLot});
+	    
+	    // 지도 옵션을 설정합니다.
+	    var options = {
+	        center: centerPosition, // 중심 좌표 설정
+	        level: 6 // 확대 수준 설정 (1:세계, 3:대한민국 수준)
+	    };
 	
-	// 마커가 표시될 위치
-	var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
-
-	// 마커를 생성
-	var marker = new kakao.maps.Marker({
-	    position: markerPosition
-	});
-
-	// 마커가 지도 위에 표시되도록 설정
-	marker.setMap(map);
+	    // 지도를 생성하고 표시합니다.
+	    var map = new kakao.maps.Map(container, options);
+	
+	    // 마커가 표시될 위치를 설정합니다.
+	    var markerPosition = centerPosition;
+	
+	    // 마커를 생성합니다.
+	    var marker = new kakao.maps.Marker({
+	        position: markerPosition
+	    });
+	
+	    // 마커가 지도 위에 표시되도록 설정합니다.
+	    marker.setMap(map);
+	} else {
+	    // mountain 객체가 없는 경우 콘솔에 메시지를 출력합니다.
+	    console.log("Mountain data is empty.");
+	}
 </script>
 
 <script>
