@@ -26,6 +26,11 @@
 			</div>
 			<%--로그인 정보 --%>
 			<div class="d-flex justify-content-end pt-2 mr-4">
+				<c:if test="${not empty kakaoId}">
+					<span>${kakaoId}님 안녕하세요</span>
+					<a href="/user/sign-out">로그아웃</a>
+				</c:if>
+				
 				<c:if test="${not empty userName}">
 					<span>${userName}님 안녕하세요</span>
 					<a href="/user/sign-out">로그아웃</a>

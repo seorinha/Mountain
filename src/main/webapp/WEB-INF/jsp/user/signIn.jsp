@@ -37,16 +37,10 @@
  	 integrity="sha384-kYPsUbBPlktXsY6/oNHSUDZoTX6+YI51f63jCPEIPFP09ttByAdxd2mEjKuhdqn4" crossorigin="anonymous">
  	</script>
  
-	<script>
-	//166cb8c90554b8d95c8841917a09a6fb
-	//카카오 sdk 초기화
-	Kakao.init("166cb8c90554b8d95c8841917a09a6fb");
-	Kakao.isInitialized();
-	</script>
 	
 	<%--카카오 로그인 버튼 --%>
 	<div class="d-flex justify-content-center mt-4">
-		<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+		<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=1f9ba236274cc877d8d549827331eb10&redirect_uri=http://localhost:8080/kakao/callback&response_type=code">
 			<img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" height="45" width="auto" alt="카카오 로그인 버튼">
 		</a>
 	</div>
@@ -59,31 +53,23 @@
 
 <%--카카오 로그인 --%>
 
+<script>
+//166cb8c90554b8d95c8841917a09a6fb
+//카카오 sdk 초기화
+Kakao.init("166cb8c90554b8d95c8841917a09a6fb");
+Kakao.isInitialized();
+</script>
 
 <script>
 //카카오 로그인 코드 확인(버튼 누르면 메소드실행-> 카카오auth서버로 이동해 로그인화면으로 진입)
-function loginWithKakao() {
+//function loginWithKakao() {
     //인가코드 받기
-	Kakao.Auth.authorize({
-	      redirectUri: 'http://localhost:8080/kakao/callback',
-	      state: 'userme',
-	    });
-	  }
+//	Kakao.Auth.authorize({
+//	      redirectUri: 'http://localhost:8080/home/home-list-view',
+//	    });
+//	  }
 
-//사용자 정보 가져오기
-function requestUserInfo() {
-	Kakao.API.request({
-	   url: '/v2/user/me',
-	})
-	.then(function(res) {
-	   alert(JSON.stringify(res));
-	})
-	 .catch(function(err) {
-	   alert(
-	     'failed to request user information: ' + JSON.stringify(err)
-	 	 );
-	  });
-  } //--카카오 로그인 코드 확인
+ //--카카오 로그인 코드 확인
  
 
  //엑세스 토큰 발급, 사용자 정보 받아오기
