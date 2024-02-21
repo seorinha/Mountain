@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Controller
 @RequestMapping("/kakao")
 public class KakaoController {
@@ -50,7 +54,42 @@ public class KakaoController {
 			String.class
 		);
 		
-		return "카카오 토큰요청 완료 : 토큰 요청에 대한 응답 :" + response.getBody();
+		//Gson, Json Simple, ObjectMapper 라이브러리 
+		ObjectMapper objectMapper = new ObjectMapper();
+		OAuthToken oauthToken = null;
+		
+		try {
+			oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("카카오 엑세스 토큰: " + oauthToken.getAccess_token());
+		
+		//토큰을 이용해서 사용자 정보 조회 
+		RestTemplate rt2 = new RestTemplate();
+		
+		//HttpHeader 오브젝트 생성
+		HttpHeaders headers2 = new HttpHeaders();
+		headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
+		headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		
+		//HttpHeader 와 HttpBody를 하나의 오브젝트에 담기
+		HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest2 = 
+				new HttpEntity<>(headers2);
+		
+		//Http요청하기 - Post 방식으로-그리고 response 변수의 응답 받음
+		ResponseEntity<String> response2 = rt2.exchange(
+			"https://kapi.kakao.com/v2/user/me",
+			HttpMethod.POST,
+			kakaoProfileRequest2,
+			String.class
+		);
+		
+		
+		return response2.getBody();
 		
 	}
 	
