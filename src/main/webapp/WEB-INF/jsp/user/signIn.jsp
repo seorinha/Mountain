@@ -60,28 +60,8 @@ Kakao.init("166cb8c90554b8d95c8841917a09a6fb");
 Kakao.isInitialized();
 </script>
 
-<script>
-//카카오 로그인 코드 확인(버튼 누르면 메소드실행-> 카카오auth서버로 이동해 로그인화면으로 진입)
-//function loginWithKakao() {
-    //인가코드 받기
-//	Kakao.Auth.authorize({
-//	      redirectUri: 'http://localhost:8080/home/home-list-view',
-//	    });
-//	  }
-
- //--카카오 로그인 코드 확인
- 
-
- //엑세스 토큰 발급, 사용자 정보 받아오기
- 
-  
- //로그아웃 기능 - 엑세스 토큰 만료 시키기
-  
-  </script>
  
 <script>
-  
- 
 $(document).ready(function() {
 	//로그인
 	$('#loginForm').on('submit', function(e) {

@@ -1,5 +1,11 @@
 package com.project.kakao;
 
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -9,20 +15,28 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.user.PasswordEncoder;
+import com.project.user.bo.UserBO;
+import com.project.user.entity.UserEntity;
 
 @Controller
 @RequestMapping("/kakao")
 public class KakaoController {
 	
-	@ResponseBody
+	@Autowired
+	private UserBO userBO;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@GetMapping("/callback")
-	public String kakaoCallback(String code) { //data를 리턴해주는 컨트롤러 함수
+	public String kakaoCallback(String code, HttpSession session) { 
 		
 		//POST 방식으로 key=value 데이터를 요청해야함 (카카오쪽으로)
 		//Retrofit2(안드로이드)
@@ -88,64 +102,56 @@ public class KakaoController {
 			String.class
 		);
 		
+		//Gson, Json Simple, ObjectMapper 라이브러리 
+				ObjectMapper objectMapper2 = new ObjectMapper();
+				KakaoProfile kakaoProfile = null;
+				
+				try {
+					kakaoProfile = objectMapper2.readValue(response2.getBody(), KakaoProfile.class);
+				} catch (JsonMappingException e) {
+					e.printStackTrace();
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
 		
-		return response2.getBody();
-		
-	}
-	
-	
-//	Logger logger = LoggerFactory.getLogger(KakaoController.class);
-//	
-//	private KakaoApi kakaoApi = new KakaoApi();
-//	
-//	@RequestMapping(value="/oauth", method=RequestMethod.GET)
-//	public String kakaoConnect() {
-//
-//	  StringBuffer url = new StringBuffer();
-//	  url.append("https://kauth.kakao.com/oauth/authorize?");
-//	  url.append("client_id=" + "1f9ba236274cc877d8d549827331eb10");
-//	  url.append("&redirect_uri=http://localhost:8080/home/home-list-view");
-//	  url.append("&response_type=code");
-//
-//	  return "redirect:" + url.toString();
-//	 }
-//
-//	@RequestMapping(value="/callback",produces="application/json",method= {RequestMethod.GET, RequestMethod.POST})
-//	 public void kakaoLogin(
-//			 @RequestParam("code") String code,
-//			 RedirectAttributes ra,
-//			 HttpSession session,
-//			 HttpServletResponse response,
-//			 Model model)throws IOException {
-//	  
-//	  System.out.print("kakao code:" + code);
-//
-//	  //토큰 받아오기
-//	  JsonNode access_token = kakaoApi.getKakaoAccessToken(code); 
-////	  System.out.println(access_token);
-//	  
-//	  //사용자 정보 요청
-//	  JsonNode userInfo = KakaoUserInfo.getKakaoUserInfo(access_token.get("access_token"));
-//
-//      // Get id
-//      String member_id = userInfo.get("id").asText();
-//
-//      String member_name = null;
-//     
-//      // 유저정보 카카오에서 가져오기 Get properties
-//      JsonNode properties = userInfo.path("properties");
-//      JsonNode kakao_account = userInfo.path("kakao_account");
-//      member_name = properties.path("nickname").asText(); //이름 정보 가져오는 것
-//     // email = kakao_account.path("email").asText();
-//	  
-//	  //return "home";
-//      System.out.print("id : " + member_id);    //여기에서 값이 잘 나오는 것 확인 가능함.
-//      System.out.print("nickname : " + member_name);
-//     // logger.info("email : " + email);
-//
-//      //return "redirect:/kakao/index";
-//      
-//	 }
-//	
-}
+				//user오브젝트 : username, password, 
+				System.out.println("카카오 id : " + kakaoProfile.getId());
+				System.out.println("카카오 nickname : " + kakaoProfile.getProperties().getNickname());
+				
+				System.out.println("mount서버 유저네임 : " + kakaoProfile.getProperties().getNickname() + "_" + kakaoProfile.getId());
+				String rawPassword = UUID.randomUUID().toString(); //임시 패스워드 만들기
+				String encodedPassword = PasswordEncoder.encode(rawPassword);;
+ 
+				System.out.println("mount서버 패스워드 : " + encodedPassword);
+				
+				UserEntity kakaoUser = UserEntity.builder()
+						.loginId(kakaoProfile.getProperties().getNickname())
+						.password(encodedPassword)
+						.name(kakaoProfile.getProperties().getNickname() + "_" + kakaoProfile.getId())
+						.build();
+				
+				//가입자 혹은 비가입자 체크 해서 처리
+				Optional<UserEntity> originUserEntity = userBO.getUserEntityByName(kakaoUser.getName());
+				
+				if (originUserEntity.isPresent()) { // 이미 가입된 회원인 경우
+			        // 해당 회원으로 로그인 처리
+					System.out.println("기존 회원입니다-----------------");
+			        UserEntity loggedInUser = originUserEntity.get();
+			        session.setAttribute("userId", loggedInUser.getId());
+			        session.setAttribute("userName", loggedInUser.getName());
+			        session.setAttribute("userLoginId", loggedInUser.getLoginId());
+			        session.setAttribute("kakaoUserName", kakaoProfile.getProperties().getNickname());
 
+			        // 로그인 성공 메시지 반환
+			        return "redirect:/home/home-list-view";
+			    } else { // 비가입자인 경우
+			        // 회원가입 처리
+			        userBO.addKakaoUser(kakaoUser);
+
+			        // 회원가입 완료 메시지 반환
+			        return "redirect:/home/home-list-view";
+			    }
+	}
+
+}
+	    

@@ -26,22 +26,23 @@
 			</div>
 			<%--로그인 정보 --%>
 			<div class="d-flex justify-content-end pt-2 mr-4">
-				<c:if test="${not empty kakaoId}">
-					<span>${kakaoId}님 안녕하세요</span>
-					<a href="/user/sign-out">로그아웃</a>
-				</c:if>
-				
-				<c:if test="${not empty userName}">
-					<span>${userName}님 안녕하세요</span>
-					<a href="/user/sign-out">로그아웃</a>
-				</c:if>
+			    <c:choose>
+			        <c:when test="${not empty kakaoUserName}">
+			            <span>${kakaoUserName}님 안녕하세요!</span>
+			            <a href="/kakao/logout" class="ml-2">카카오 로그아웃</a>
+			        </c:when>
+			        <c:otherwise>
+			            <c:if test="${not empty userName}">
+			                <span>${userName}님 안녕하세요!</span>
+			                <a href="/user/sign-out" class="ml-2">로그아웃</a>
+			            </c:if>
+			        </c:otherwise>
+			    </c:choose>
+			    
+			    <c:if test="${empty userName || empty kakaoUserName}">
+			        <a href="/user/sign-in-view" class="menu-login text-white">로그인</a>
+			    </c:if>
 			</div>
-			
-			<c:if test="${empty userId}">
-			<div class="d-flex justify-content-end pt-2 mr-4">
-				<a href="/user/sign-in-view" class="menu-login text-white">로그인</a>
-			</div>
-			</c:if>
 			
 		</div>
 	</div>

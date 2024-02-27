@@ -66,7 +66,7 @@ public class UserRestController {
 			@RequestParam("email") String email) {
 		
 		//password 해싱 - md5알고리즘
-		String hashedPassword = EncryptUtils.md5(password);
+		String hashedPassword = PasswordEncoder.encode(password);
 		
 		//db insert
 		Integer id = userBO.addUser(loginId, hashedPassword, name, email);
@@ -98,7 +98,7 @@ public class UserRestController {
 			HttpServletRequest request) {
 		
 		//password hashing
-		String hasedPassword = EncryptUtils.md5(password);
+		String hasedPassword = PasswordEncoder.encode(password);
 		
 		//db insert
 		UserEntity userEntity = userBO.getUserEntityByLoginIdPassword(loginId, hasedPassword);

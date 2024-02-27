@@ -134,10 +134,10 @@ $(document).ready(function() {
 			return false;
 		}
 		
-		if (email == '') {
-			alert("이메일을 입력하세요");
-			return false;
-		}
+		//if (email == '') {
+		//	alert("이메일을 입력하세요");
+		//	return false;
+		//}
 		
 		
 		//아이디 중복 확인 후 사용가능한지 확인 
