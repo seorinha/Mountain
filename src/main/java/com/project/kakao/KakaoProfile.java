@@ -2,8 +2,11 @@ package com.project.kakao;
 
 import javax.annotation.Generated;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 
+@Component
 @Data
 @Generated("jsonschema2pojo")
 public class KakaoProfile {
