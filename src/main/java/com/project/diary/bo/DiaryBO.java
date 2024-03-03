@@ -52,6 +52,9 @@ public class DiaryBO {
 			UserEntity user = userBO.getUserEntityById(post.getUserId());
 			cardView.setUser(user);
 			
+			//글 작성 날짜 
+			cardView.setCreatedAt(post.getCreatedAt());
+			
 			//댓글
 			List<CommentView> commentList = commentBO.generateCommentViewListByPostId(post.getId());
 			cardView.setCommentList(commentList);

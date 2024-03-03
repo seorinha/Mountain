@@ -1,6 +1,6 @@
 package com.project.post.entity;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,10 +40,10 @@ public class PostEntity {
 
 	@UpdateTimestamp
 	@Column(name = "createdAt", updatable = false)
-	private ZonedDateTime createdAt;
+	private Date createdAt;
 
 	@UpdateTimestamp
 	@Column(name = "updatedAt")
-	private ZonedDateTime updatedAt;
+	private Date updatedAt;
 	
 }

@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <div>
 	<div class="contents-box">
 		<%--글쓰기 영역(로그인된 사람만 보이게) --%>
@@ -45,15 +44,10 @@
 						</c:if>
 					</div>
 					<%--날짜 --%>
-					<%
-						Date date = new Date();
-						SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy년 M월 d일");
-						String strDate = simpleDate.format(date);
-					%>
-					<div class="ml-3">					
-						<%=strDate %>
+					<div class="ml-3">		
+						<fmt:formatDate value="${card.post.createdAt}" type="date" pattern="yyyy년 M월 d일" />					
+						
 					</div>
-					<%-- <fmt:formatDate value="${post.createdAt}" type="date" pattern="yyyy년 M월 d일" />--%>					
 				</div>	
 				
 				<%-- 카드 이미지 --%>

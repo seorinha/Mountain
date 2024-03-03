@@ -1,5 +1,6 @@
 package com.project.diary.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import com.project.comment.domain.CommentView;
@@ -16,6 +17,9 @@ public class CardView {
 		
 	//글쓴이 정보
 	private UserEntity user;
+	
+	//글 작성 날짜 
+	private Date createdAt;
 	
 	//댓글
 	private List<CommentView> commentList;
