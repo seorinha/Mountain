@@ -65,6 +65,14 @@ public class UserRestController {
 			@RequestParam("name") String name,
 			@RequestParam("email") String email) {
 		
+		 // 이름에 대한 유효성 검사 수행
+	    if (name.isEmpty()) {
+	        Map<String, Object> result = new HashMap<>();
+	        result.put("code", 400);
+	        result.put("errorMessage", "이름을 입력하세요");
+	        return result;
+	    }
+		
 		//password 해싱 - md5알고리즘
 		String hashedPassword = PasswordEncoder.encode(password);
 		
