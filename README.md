@@ -42,7 +42,7 @@
 <br>
 
 ## Notion 주소
-[Notion](https://www.notion.so/f90ec026ac1345eebb680fb803a32de7?v=1e6b4e1cc88f48ae9ab15a90d762257a)
+[Notion](https://lacy-pirate-94a.notion.site/f90ec026ac1345eebb680fb803a32de7?v=1e6b4e1cc88f48ae9ab15a90d762257a)
 <br>
 <br>
 
