@@ -26,13 +26,14 @@
 #### 로그인 - [Wiki이동](https://github.com/seorinha/Mountain/wiki/Login-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C)
 - DB 값 검증
 - 로그인 시 세션(Session) 생성
+- 카카오 로그인 API 구현
 
 #### 회원가입 - [Wiki이동](https://github.com/seorinha/Mountain/wiki/User-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C)
 - ID 중복 체크
   
 #### 산 정보 페이지 - [Wiki이동](https://github.com/seorinha/Mountain/wiki/Mountain-%EC%A0%95%EB%B3%B4-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C)
 - 즐겨찾기 추가
-- 리뷰 작성, 읽기, 수정, 삭제(CRUD)
+- 후기 작성, 읽기, 수정, 삭제(CRUD)
 
 #### 등산일지 - [Wiki이동](https://github.com/seorinha/Mountain/wiki/Diary-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C)
 - 일지 작성, 삭제
