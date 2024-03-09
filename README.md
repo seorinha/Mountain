@@ -7,17 +7,17 @@
 <br>
 
 ## ⏱️ 개발 기간
-2023.11.13 ~ 2024.01.
+2023.11.13 ~ 2024.02.28
 <br>
 <br>
 
 ## ⚙️ 개발 환경
 - Java
 - JDK 17
-- IDE:STS 4 
+- IDE: STS 4 
 - Framework: Springboot(2.x)
 - Database: MySQL
-- ORM:
+- ORM: MyBatis, JPA
 - 형상관리 툴: GitHub
 <br>
 <br>
