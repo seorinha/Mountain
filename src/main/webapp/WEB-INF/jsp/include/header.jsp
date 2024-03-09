@@ -39,7 +39,7 @@
 			        </c:otherwise>
 			    </c:choose>
 			    
-			    <c:if test="${empty userName || empty kakaoUserName}">
+			    <c:if test="${empty userName && empty kakaoUserName}">
 			        <a href="/user/sign-in-view" class="menu-login text-white">로그인</a>
 			    </c:if>
 			</div>
