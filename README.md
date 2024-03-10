@@ -41,14 +41,14 @@
  <br>
 <br>
 
-## Notion 주소
-[Notion](https://lacy-pirate-94a.notion.site/f90ec026ac1345eebb680fb803a32de7?v=1e6b4e1cc88f48ae9ab15a90d762257a)
+## 포트폴리오
+[포트폴리오 보기](https://lacy-pirate-94a.notion.site/f90ec026ac1345eebb680fb803a32de7?v=1e6b4e1cc88f48ae9ab15a90d762257a)
 <br>
 <br>
 
 ## AWS 주소
-
--  ID:
--  PW:
+[MOUNT 바로가기](http://15.165.204.48:8080/user/sign-in-view)
+-  ID: aaaa
+-  PW: aaaa
 <br>
 <br>
