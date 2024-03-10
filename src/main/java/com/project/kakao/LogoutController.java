@@ -30,7 +30,7 @@ public class LogoutController {
         String clientId = "1f9ba236274cc877d8d549827331eb10";
 
         // 서비스의 로그아웃 Redirect URI
-        String redirectUri = "http://localhost:8080/kakao/logout/redirect";
+        String redirectUri = "http://15.165.204.48:8080/kakao/logout/redirect";
 
         // GET 요청에 필요한 파라미터 설정 및 URL 인코딩
         try {

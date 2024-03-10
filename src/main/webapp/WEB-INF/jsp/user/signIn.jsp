@@ -40,7 +40,7 @@
 	
 	<%--카카오 로그인 버튼 --%>
 	<div class="d-flex justify-content-center mt-4">
-		<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=1f9ba236274cc877d8d549827331eb10&redirect_uri=http://localhost:8080/kakao/callback&response_type=code">
+		<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=1f9ba236274cc877d8d549827331eb10&redirect_uri=http://15.165.204.48:8080/kakao/callback&response_type=code">
 			<img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" height="45" width="auto" alt="카카오 로그인 버튼">
 		</a>
 	</div>

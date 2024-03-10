@@ -109,8 +109,10 @@
 </div>
 
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=166cb8c90554b8d95c8841917a09a6fb"></script>
+<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=166cb8c90554b8d95c8841917a09a6fb&&libraries=clusterer,services&autoload=false"></script>
 <script>
+window.onload = function () {
+	kakao.maps.load(function () {
 	//mountain 객체가 존재하는 경우에만 지도를 표시합니다.
 	if (${mountain.mtLat} != null && ${mountain.mtLot} != null) {
 	    // 지도 표시할 div의 요소를 가져옵니다.
@@ -142,6 +144,8 @@
 	    // mountain 객체가 없는 경우 콘솔에 메시지를 출력합니다.
 	    console.log("Mountain data is empty.");
 	}
+	})
+}
 </script>
 
 <script>
