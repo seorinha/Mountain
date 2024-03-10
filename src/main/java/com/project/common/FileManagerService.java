@@ -21,7 +21,8 @@ public class FileManagerService {
 	//public static final String FILE_UPLOAD_PATH = "D:\\하서린\\6_project\\workspace\\images/";
 			
 	//집 경로
-	public static final String FILE_UPLOAD_PATH = "C:\\Users\\ASUS\\Desktop\\웹개발\\6_project\\workspace\\images/";
+//	public static final String FILE_UPLOAD_PATH = "C:\\Users\\ASUS\\Desktop\\웹개발\\6_project\\workspace\\images/";
+	public static final String FILE_UPLOAD_PATH = "/home/ec2-user/images/";
 	
 	//이미지 저장
 	//input: userLoginId, file
