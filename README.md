@@ -28,12 +28,19 @@
 - 로그인 시 세션(Session) 생성
 - 카카오 로그인 API 구현
 
+
 #### 회원가입 - [Wiki이동](https://github.com/seorinha/Mountain/wiki/User-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C)
 - ID 중복 체크
-  
+
+
+#### 산 API (외부 API) - [Wiki이동](https://github.com/seorinha/Mountain/wiki/%EC%82%B0-API-(%EC%99%B8%EB%B6%80-API)-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C)
+- 외부 공공 API 구현
+
+
 #### 산 정보 페이지 - [Wiki이동](https://github.com/seorinha/Mountain/wiki/Mountain-%EC%A0%95%EB%B3%B4-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C)
 - 즐겨찾기 추가
 - 후기 작성, 읽기, 수정, 삭제(CRUD)
+
 
 #### 등산일지 - [Wiki이동](https://github.com/seorinha/Mountain/wiki/Diary-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C)
 - 일지 작성, 삭제
